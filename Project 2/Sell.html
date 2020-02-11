@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sell Items!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  </head>
+</head>
+<body>
+    <div class="w3-container">
+
+        <div id="id01" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+  
+            <div class="w3-center"><br>
+              <span onclick="document.getElementById('id01').style.display='none'"
+                class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+            </div>
+  
+            <div class="w3-container">
+              <div class="w3-section">
+                <label><b>Your Name</b></label>
+                <input id="userName" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username"
+                  name="usrname" required>
+                <label><b>Email</b></label>
+                <input id="email" class="w3-input w3-border" type="email" placeholder="Email" name="email" required>
+                <label><b>Price</b></label>
+                <input id="price" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Please enter a price for your item"
+                  name="price" required>
+                 <div> <label><b>Please categorize your item</b></label></div>
+                  <a class="btn btn-primary" href="#" role="button">Pants</a>
+<button class="btn btn-primary" type="submit">Shirts</button>
+<input class="btn btn-primary" type="button" value="Sweaters">
+<input class="btn btn-primary" type="submit" value="Shoes">
+<input class="btn btn-primary" type="reset" value="Other">
+              <div>  <label><b>Discription</b></label>
+                <textarea id="subject" class="w3-input w3-border" id="discription" name="discription" placeholder="Discribe the item you would like to sell"
+                  style="height:200px" required></textarea>
+                  </div>
+                <button id="submitBtn" class="w3-button w3-block w3-green w3-section w3-padding">Submit</button>
+              </div>
+              <p id="message" style="display:block"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+    <script src="./sell.js"></script>
+</body>
+</html>
