@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -11,11 +12,20 @@ body {
   color: #424242;
 }
 
-h1, h2, h3, h4, h5 {
-  margin: 0; 
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
 }
 
-header, nav, footer, section, article, div {
+header,
+nav,
+footer,
+section,
+article,
+div {
   box-sizing: border-box;
 }
 
@@ -29,7 +39,6 @@ ul {
   margin: 0;
 }
 
-
 /*
  *
  * Common
@@ -38,11 +47,10 @@ ul {
 
 .news__more {
   float: right;
-  font-size: .8em;
+  font-size: 0.8em;
   color: #333;
   text-decoration: none;
 }
-
 
 /*
  *
@@ -51,7 +59,8 @@ ul {
  */
 
 .header {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 3px rgba(0, 0, 0, 0.26);
+
   min-height: 56px;
   transition: min-height 0.3s;
 }
@@ -76,7 +85,6 @@ ul {
   display: inline-block;
   color: #212121;
 }
-
 
 /*
  *
@@ -117,7 +125,6 @@ ul {
   color: #212121;
 }
 
-
 /*
  *
  * Main
@@ -136,7 +143,6 @@ main {
  * Content
  *
  */
-
 
 /*
  *
@@ -163,7 +169,6 @@ main {
   padding: 1em;
 }
 
-
 /*
  *
  * Top News
@@ -171,20 +176,20 @@ main {
  */
 
 .top-news {
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid #e0e0e0;
   padding: 1em;
   width: 100%;
 }
 
 .news__title {
   font-weight: 300;
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid #e0e0e0;
   line-height: 24px;
   font-size: 16px;
 }
 
 .top-news__item {
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid #e0e0e0;
   padding: 1em 0;
   line-height: 19.2px;
 }
@@ -208,7 +213,6 @@ main {
   text-decoration: underline;
 }
 
-
 /*
  *
  * Sport Scores
@@ -227,13 +231,13 @@ main {
 
 .scores__table th,
 .scores__table td {
-  padding: 1em; 
+  padding: 1em;
 }
 
 .scores__table th {
   color: #fff;
   font-weight: 300;
-  background-color: #78909C;
+  background-color: #78909c;
 }
 
 .scores__table tr:nth-child(1) th:nth-child(3) {
@@ -293,7 +297,7 @@ main {
 }
 
 .weather__today__image {
-  vertical-align: middle
+  vertical-align: middle;
 }
 
 .weather__today__temp {
@@ -318,7 +322,6 @@ main {
 .weather__next__image {
   width: 100%;
 }
-
 
 /*
  *
@@ -358,17 +361,20 @@ main {
   text-decoration: underline;
 }
 
-
 /*
  *
  * Footer
  *
  */
 
-footer {
-  border-top: 1px solid #E0E0E0;
+#sticky-footer {
+  border-top: 1px solid #e0e0e0;
   padding: 1em;
+  position: relative;
+  left: 0;
+  bottom: 0;
   width: 100%;
+  text-align: center;
 }
 
 footer li {
