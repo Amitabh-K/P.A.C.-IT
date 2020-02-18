@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Add Product</title>
+  <link rel="icon" href="../images/onlinestoreicon.png">
+
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO'
+    crossorigin='anonymous'>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/all.css' integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns'
+    crossorigin='anonymous'>
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+  <header class="header">
+    <!-- Navigation var on top -->
+    <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
+      <!-- Brand -->
+      <a class="navbar-brand">
+        <a class="nav-link d-inline" href="/">
+          <img src="./images/onlinestore.png" alt="Logo" class="brandLogo imgRnd10 imageShadow">
+        </a>
+      </a>
+
+      <!-- Button for small devices -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Menu-Link options -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ml-auto active btn-primary rounded px-5">
+            <a class="nav-link" href="/">Buy</a>
+          </li>
+          <li class="nav-item ml-auto">
+            <a class="nav-link px-5" href="/depmts">Sell</a>
+          </li>
+          <li class="nav-item ml-auto">
+            <a class="nav-link px-5" href="/prods">Admin</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </header>
+  <!-- header end -->
+
+  <div class="container">
+
+    <h2>New Product Info</h2>
+    <form>
+      <div class="form-group">
+        <label for="deptList">Seller <span class="inputErrors" id="deptListErr"></span></label>
+        <select class="form-control" id="deptList" name="deptList">
+          <!-- Possible departments go here -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="prodName">Product <span class="inputErrors" id="prodNameErr"></span></label>
+        <input type="text" class="form-control" name="deptName" id="prodName" placeholder="Product name..">
+      </div>
+      <div class="form-group">
+        <label for="prodStocknum">image URL <span class="inputErrors" id="prodStockNumErr"></span></label>
+        <input type="images" class="form-control" name="prodStocknum" id="prodStocknum" placeholder="https://unsplash.com/">
+      </div>
+      <div class="form-group">
+        <label for="prodDescr">Description <span class="inputErrors" id="prodDescrErr"></span></label>
+        <input type="text" class="form-control" name="prodDescr" id="prodDescr" placeholder="Product description..">
+      </div>
+      <div class="form-group">
+        <label for="prodPrice">Price <span class="inputErrors" id="prodPriceErr"></span></label>
+        <input type="number" class="form-control" name="prodPrice" id="prodPrice" placeholder="Product Price..">
+      </div>
+      <div class="form-group">
+        <label for="prodStockQty">Quantity<span class="inputErrors" id="prodStockQtyErr"></span></label>
+        <input type="number" class="form-control" name="prodStockQty" id="prodStockQty" placeholder="Count of item to sell">
+      </div>
+
+      <button type="submit" class="btn btn-primary" onclick="createProd()">Create</button>
+      <button type="submit" class="btn btn-danger" onclick="cancelAction()">Cancel</button>
+    </form>
+
+  </div>
+  <!-- end container -->
+
+</div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <script>
+    // keep a collection of incoming departments
+    let deptArr = []
+
+    // cancel action 
+    const cancelAction = () => {
+      // oveeride form-submit defualt behavior
+      event.preventDefault()
+      // redirect
+      window.location = './prods'
+    }
+
+    // validate and create product 
+    const createProd = () => {
+      // override form-submit default behavior
+      event.preventDefault()
+      // clear previous errors 
+      document.querySelector('#prodNameErr').innerHTML = ''
+      document.querySelector('#prodStockNumErr').innerHTML = ''
+      document.querySelector('#prodDescrErr').innerHTML = ''
+      document.querySelector('#prodPriceErr').innerHTML = ''
+      document.querySelector('#prodStockQtyErr').innerHTML = ''
+      // validation
+      let errFound = false
+      if (!document.getElementById("deptList").value) {
+        document.querySelector('#deptListErr').innerHTML = ' - Departments must exist'
+        errFound = true
+      }
+      if (!document.querySelector('#prodName').value) {
+        document.querySelector('#prodNameErr').innerHTML = ' - please provide a name'
+        errFound = true
+      }
+      if (!document.querySelector('#prodStocknum').value) {
+        document.querySelector('#prodStockNumErr').innerHTML = ' - please provide a inventory number'
+        errFound = true
+      }
+      if (!document.querySelector('#prodDescr').value) {
+        document.querySelector('#prodDescrErr').innerHTML = ' - please provide a description'
+        errFound = true
+      }
+      if (!document.querySelector('#prodPrice').value) {
+        document.querySelector('#prodPriceErr').innerHTML = ' - please provide a price'
+        errFound = true
+      }
+      if (!document.querySelector('#prodStockQty').value) {
+        document.querySelector('#prodStockQtyErr').innerHTML = ' - please provide a quantity'
+        errFound = true
+      }
+
+      if (!errFound) {
+        // Get information from screen
+        let deptId = getDeptId(document.getElementById("deptList").value)
+        let prodName = document.querySelector('#prodName').value
+        let prodStocknum = document.querySelector('#prodStocknum').value
+        let prodDescr = document.querySelector('#prodDescr').value
+        let prodPrice = document.querySelector('#prodPrice').value
+        let prodStockQty = document.querySelector('#prodStockQty').value
+
+        // save product
+        fetch('/prodcts', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json ; charset=utf-8'
+            },
+            body: JSON.stringify({
+              name: prodName,
+              inventoryNum: prodStocknum,
+              description: prodDescr,
+              price: prodPrice,
+              stockQty: prodStockQty,
+              departmentId: deptId
+            })
+          })
+          .then(r => {
+            // redirect
+            window.location = './prods'
+          })
+          .catch(e => console.error(e))
+
+      } // if not error
+
+    }
+
+    // geat all departments and present in selector
+    const getDepartments = () => {
+      fetch('/depts')
+        .then(r => r.json())
+        .then(r => {
+          deptArr = []
+          document.querySelector('#deptList').innerHTML = ''
+          r.forEach(dept => {
+            // add department to array
+            deptArr.push({
+              id: dept.id,
+              name: dept.name
+            })
+            // make it an option in selector
+            let listOption = document.createElement('option')
+            listOption.innerHTML = `<option data-value="${dept.Id}">${dept.name}</option>`
+            document.querySelector('#deptList').appendChild(listOption)
+          });
+        })
+        .catch(e => console.error(e))
+    }
+
+    // get all departments and polulate selector
+    getDepartments()
+
+    // Extartd departent id for department arrya
+    function getDeptId(deptName) {
+      let deptId = undefined
+      deptArr.forEach(dept => {
+        if (deptName === dept.name) {
+          deptId = dept.id
+        }
+      });
+      return deptId
+    }
+  </script>
+
+</body>
+
+</html>

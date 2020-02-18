@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Remove product</title>
+  <link rel="icon" href="../images/onlinestoreicon.png">
+
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO'
+    crossorigin='anonymous'>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/all.css' integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns'
+    crossorigin='anonymous'>
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+
+  
+  <header class="header">
+    <!-- Navigation var on top -->
+    <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
+      <!-- Brand -->
+      <a class="navbar-brand">
+        <a class="nav-link d-inline" href="/">
+          <img src="./images/onlinestore.png" alt="Logo" class="brandLogo imgRnd10 imageShadow">
+        </a>
+      </a>
+
+      <!-- Button for small devices -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Menu-Link options -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ml-auto active btn-primary rounded px-5">
+            <a class="nav-link" href="/">Buy</a>
+          </li>
+          <li class="nav-item ml-auto px-5">
+            <a class="nav-link" href="/depmts">Sell</a>
+          </li>
+          <li class="nav-item ml-auto px-5">
+            <a class="nav-link" href="/prods">Admin</a>
+          </li>
+        </ul>
+      </div>
+      
+    </nav>
+
+  </header>
+  <!-- header end -->
+
+
+
+  <div class="container">
+
+    <h2>Do you want to delete this Product?</h2>
+    <div>
+      <ul id="prodsList">
+        <!-- Products will be luisted here -->
+      </ul>
+      <button type="submit" class="btn btn-primary" onclick="deleteProd()">Delete</button>
+      <button type="submit" class="btn btn-danger" onclick="cancelAction()">Cancel</button>
+    </div>
+
+  </div>
+
+
+  <!-- end container -->
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <script>
+    // keep a collection of incoming departments
+    let deptArr = []
+
+    // cancel teh action 
+    const cancelAction = () => {
+      // oveeride form-submit defualt behavior
+      event.preventDefault()
+      // redirect
+      window.location = './prods'
+    }
+
+    const deleteProd = () => {
+      // override form-submit default behavior
+      event.preventDefault()
+      // delete product
+      fetch(`/prodcts/${selectedId}`, {
+          method: 'DELETE'
+        })
+        .then(r => {
+          // redirect
+          window.location = './prods'
+        })
+        .catch(e => console.error(e))
+    }
+
+    const getDepartments = () => {
+      fetch('/depts')
+        .then(r => r.json())
+        .then(r => {
+          deptArr = []
+          r.forEach(dept => {
+            // add department to array
+            deptArr.push({
+              id: dept.id,
+              name: dept.name
+            })
+          });
+        })
+        .catch(e => console.error(e))
+    }
+
+    // get from DB the selected item and display
+    const getSelectedItem = (itemId) => {
+      // get selected item 
+      fetch(`/prodcts/${itemId}`)
+        .then(r => r.json())
+        .then(r => {
+          let listItem = document.createElement('li')
+          listItem.innerHTML =
+            ` <div class="row">
+                   <div class="col-sm-9">                             
+                      <div class="card">
+                       <div class="card-body">
+                         <h5 class="card-title">Name: ${r.name}</h5>
+                         <h6 class="card-subtitle mb-2 text-muted">Stock Number: ${r.inventoryNum}</h6>
+                         <p class="card-text">Description: ${r.description}</p>
+                         <p class="card-text">Depmt: ${getDeptName(r.departmentId)} /  Price($): ${r.price} / Stock: ${r.stockQty}</p> 
+                      </div>
+                     </div>
+                   </div>
+              </div>
+              `
+          document.querySelector('#prodsList').appendChild(listItem)
+        })
+        .catch(e => console.error(e))
+    }
+
+    // get id passed in URL
+    let selectedId = getUrlParameter()
+    // get all departments and polulate selector
+    getDepartments()
+    // bring the selected item for display
+    getSelectedItem(selectedId)
+
+    // general function --------------------------------------------------------
+    function getDeptId(deptName) {
+      let deptId = undefined
+      deptArr.forEach(dept => {
+        if (deptName === dept.name) {
+          deptId = dept.id
+        }
+      });
+      return deptId
+    }
+
+    function getDeptName(deptId) {
+      deptId = parseInt(deptId)
+      let deptName = undefined
+      deptArr.forEach(dept => {
+        if (deptId === parseInt(dept.id)) {
+          deptName = dept.name
+        }
+      });
+      return deptName
+    }
+
+    function getUrlParameter() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+      });
+      return parseInt(vars.id)
+    }
+  </script>
+
+</body>
+
+</html>
