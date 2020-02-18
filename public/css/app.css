@@ -397,10 +397,16 @@ main {
 }
 
 .product{
-  background-color:cyan;
+  background-color:orange;
   font-weight: bold;
 font-size: 1.6rem;
+padding: 1%;
 
+}
+
+.nav-item{
+  width: 200px;
+  text-align: center;
 }
 
 

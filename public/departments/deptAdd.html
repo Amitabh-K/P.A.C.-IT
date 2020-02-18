@@ -61,8 +61,13 @@
         <input type="text" class="form-control" name="deptName" id="deptName" placeholder="John Smith">
       </div>
       <div class="form-group">
-        <label for="deptOverheadCosts">Email<span id="deptOverheadCostErr"></span></label>
-        <input type="number" class="form-control" name="deptOverheadCosts" id="deptOverheadCosts" placeholder="john.smith@gmail.com">
+        <label for="deptOverheadCosts">Commission<span id="deptOverheadCostErr"></span></label>
+        <input type="number" class="form-control" name="deptOverheadCosts" id="deptOverheadCosts" placeholder="$$$">
+
+        <div class="form-group">
+          <label for="email">Email<span id="email"></span></label>
+          <input type="email" class="form-control" name="email" id="email" placeholder="johnsmith@example.com">
+        </div>
       </div>
       <button type="submit" class="btn btn-primary" onclick="addDept()">Add</button>
       <button type="submit" class="btn btn-danger" onclick="cancelAction()">Cancel</button>
@@ -98,6 +103,7 @@
         // Get information from screen
         let deptName = document.querySelector('#deptName').value
         let deptOverHeadCosts = document.querySelector('#deptOverheadCosts').value
+        let email = document.querySelector('#email').value
         // if overhead cost not provided use a random value
         if (deptOverHeadCosts === undefined || deptOverHeadCosts === '') {
           deptOverHeadCosts = 100 + Math.floor(Math.random() * 2000)
@@ -111,7 +117,8 @@
             },
             body: JSON.stringify({
               name: deptName,
-              overheadCosts: deptOverHeadCosts
+              overheadCosts: deptOverHeadCosts,
+              email: email
             })
           })
           .then(r => {
