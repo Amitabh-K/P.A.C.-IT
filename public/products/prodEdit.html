@@ -35,16 +35,16 @@
       </button>
       <!-- Menu-Link options -->
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <!-- Menu left aligned (ml-auto) ref: https://stackoverflow.com/questions/41513463/bootstrap-4-align-navbar-items-to-the-right -->
+        
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-auto active btn-primary rounded">
-            <a class="nav-link" href="/">Home</a>
+          <li class="nav-item ml-auto ">
+            <a class="nav-link px-5" href="/">Buy</a>
           </li>
           <li class="nav-item ml-auto">
-            <a class="nav-link" href="/depmts">Department Admin</a>
+            <a class="nav-link px-5" href="/depmts">Sell</a>
           </li>
           <li class="nav-item ml-auto active btn-primary rounded">
-            <a class="nav-link  active btn-primary rounded"" href="/prods">Product Admin</a>
+            <a class="nav-link  active btn-primary rounded px-5" href="/prods">Admin</a>
           </li>
         </ul>
       </div>
@@ -58,18 +58,18 @@
     <h2>Update Product Info</h2>
     <form>
       <div class="form-group">
-        <label for="deptList">Department <span class="inputErrors" id="deptListErr"></span></label>
+        <label for="deptList">Seller <span class="inputErrors" id="deptListErr"></span></label>
         <select class="form-control" id="deptList" name="deptList">
           <!-- Possible departments go here -->
         </select>
       </div>
       <div class="form-group">
-        <label for="prodName">Name <span class="inputErrors" id="prodNameErr"></span></label>
+        <label for="prodName">Product <span class="inputErrors" id="prodNameErr"></span></label>
         <input type="text" class="form-control" name="deptName" id="prodName" placeholder="Product name..">
       </div>
       <div class="form-group">
-        <label for="prodStocknum">Inventory number <span class="inputErrors" id="prodStockNumErr"></span></label>
-        <input type="text" class="form-control" name="prodStocknum" id="prodStocknum" placeholder="Product inventory number..">
+        <label for="prodStocknum">Phone number <span class="inputErrors" id="prodStockNumErr"></span></label>
+        <input type="images" class="form-control" name="prodStocknum" id="prodStocknum" placeholder="Product inventory number..">
       </div>
       <div class="form-group">
         <label for="prodDescr">Description <span class="inputErrors" id="prodDescrErr"></span></label>
@@ -80,8 +80,8 @@
         <input type="number" class="form-control" name="prodPrice" id="prodPrice" placeholder="Product Price..">
       </div>
       <div class="form-group">
-        <label for="prodStockQty">Quantity in Stock <span class="inputErrors" id="prodStockQtyErr"></span></label>
-        <input type="number" class="form-control" name="prodStockQty" id="prodStockQty" placeholder="Product in inventory..">
+        <label for="prodStockQty">Quantit <span class="inputErrors" id="prodStockQtyErr"></span></label>
+        <input type="number" class="form-control" name="prodStockQty" id="prodStockQty" placeholder="Count of item to sell">
       </div>
 
       <button type="submit" class="btn btn-primary" onclick="updateProd()">Update</button>
