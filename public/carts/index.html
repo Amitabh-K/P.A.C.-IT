@@ -136,17 +136,24 @@
             cartItemArr.push(cartItem)
             let listItem = document.createElement('li')
             listItem.innerHTML =
+
               ` <div class="row">
                   <div class="col-sm-9">                             
                      <div class="card">
                        <div class="card-body">
                          <h5 class="card-title">Name: ${cartItem.prodName}</h5>
-                         <h6 class="card-subtitle mb-2 text-muted">Stock Number: ${cartItem.inventoryNum}</h6>
+                         
+
+                         <div class="card__image">
+                                    <img src="${cartItem.inventoryNum}" alt="product">
+                                    </div>
+
                          <p class="card-text">Description: ${cartItem.description}</p>
-                         <p class="card-text"> Price($): ${cartItem.unitPrice} / Qty: ${cartItem.qty}</p> 
+                         <p class="card-text"> Price $: ${cartItem.unitPrice} <br> Qty: ${cartItem.qty}</p> 
                        </div>
                     </div>
                  </div>
+                 
                <div class="col-sm-3">
                   <form>
                      <div class="form-group">
@@ -157,6 +164,7 @@
                    </form>         
                </div>
              </div>
+
              `
             document.querySelector('#prodsList').appendChild(listItem)
           });
