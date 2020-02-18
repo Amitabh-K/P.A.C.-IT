@@ -1,0 +1,166 @@
+/* Applicatin CSS */
+body {
+  
+  /* Remove margins and padding around content */
+  margin: 0;
+  padding: 0;
+  /* Fix background during scrolling */
+  background-attachment: fixed;
+  /* Use scalable background image (cross borwser) */
+  background-image: url("../images/storefront.jpg");
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #003A6C;
+}
+
+.gradBlue {
+  /* Gradient for NavBar */
+  background-image: -webkit-linear-gradient(top, red, white);
+  background-image: -moz-linear-gradient(top,red, white);
+  background-image: -ms-linear-gradient(top, red, white);
+  background-image: -o-linear-gradient(top, red, white);
+  background-image: linear-gradient(top, red, white);
+} 
+
+.imgRnd10 {
+  /* Rounded image corners */
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.imageShadow {
+  /* Add drop shadow */
+  -webkit-box-shadow: 2px 2px 3px 2px gray;
+  -moz-box-shadow: 2px 2px 3px 2px gray;
+  box-shadow: 2px 2px 3px 2px gray;
+}
+
+.divider {
+  background-color: rgb(77, 118, 153);
+  height: 5px;
+  width: 95%;
+  margin-left: 10px;
+  
+}
+
+/* Header ............................................... */
+.brandName {
+  color: rgb(216, 215, 219);
+}
+
+.header a {
+  font-size: 24px;
+}
+
+ul {
+  list-style-type: none;
+  list-style-type:none;
+}
+
+
+
+.brandLogo {
+  width: 250px;
+}
+
+/* Container ........................................... */
+.container {
+  background-color: #a09c90;
+  /* Transparent background */
+  opacity: 0.9;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* Set min height to fill larger screens */
+  min-height: 800px;
+}
+
+.inputErrors {
+  color: red;
+}
+
+/* Checkbox styles */
+.form-group input[type="checkbox"] {
+  display: none;
+}
+
+.form-group input[type="checkbox"]+.btn-group>label span {
+  width: 10px;
+}
+
+.form-group input[type="checkbox"]+.btn-group>label span:first-child {
+  display: none;
+}
+
+.form-group input[type="checkbox"]+.btn-group>label span:last-child {
+  display: inline-block;
+}
+
+.form-group input[type="checkbox"]:checked+.btn-group>label span:first-child {
+  display: inline-block;
+}
+
+.form-group input[type="checkbox"]:checked+.btn-group>label span:last-child {
+  display: none;
+}
+
+#collapsibleNavbar{
+  color: black;
+}
+.navbar{
+  color: black;
+}
+
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;

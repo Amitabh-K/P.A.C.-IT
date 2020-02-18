@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>pacit Cart</title> 
+
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO'
+    crossorigin='anonymous'>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/all.css' integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns'
+    crossorigin='anonymous'>
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body>
+  <div class="container">
+  
+
+  <header class="header">
+    <!-- Navigation var on top -->
+    <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
+      <!-- Brand -->
+      <a class="navbar-brand">
+        <a class="nav-link d-inline" href="/">
+          <img src="./images/onlinestore.png" alt="Logo" class="brandLogo imgRnd10 imageShadow">
+        </a>
+      </a>
+
+      <!-- Button for small devices -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Menu-Link options -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <!-- Menu left aligned (ml-auto) ref: https://stackoverflow.com/questions/41513463/bootstrap-4-align-navbar-items-to-the-right -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ml-auto active btn-primary rounded">
+            <a class="nav-link" href="/">Buy</a>
+          </li>
+          <li class="nav-item ml-auto">
+            <a class="nav-link" href="/depmts">Sell</a>
+          </li>
+          <li class="nav-item ml-auto">
+            <a class="nav-link" href="/prods">Admin</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </header>
+  <!-- header end -->
+  <div class="orderBar">
+    <form>
+      <div class="row my-4">
+        <div class="col-sm-6 ">
+          <!-- Nothing here (need to do a shift 5 instead) -->
+          <h3 class="ml-5" style="color: rgba(39, 3, 3, 0.692)"> <span id=""></span> </h3>
+        </div>
+        <div class="col-sm-6">
+          <button class="btn btn-lg btn-primary" id="btnShopMore">Select more</button>
+          <button class="btn btn-lg btn-success" id="btnPlaceOrder">Finalize items</button>
+          <button class="btn  btn-lg btn-danger" id="btnDeleteOrder">Remove favorite</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 ">
+        <!-- Nothing here (need to do a shift 5 instead) -->
+        <h3 class="ml-5" style="color: rgba(39, 3, 3, 0.692)">Subtotal: <span id="cartTotal"></span> </h3>
+      </div>
+      <div class="col-sm-12">
+        <h4>Products in Order</h4>
+        <ul id="prodsList">
+          <!-- Products will be luisted here -->
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+  
+  <!-- end container -->
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <script>
+    // keep a collection of incoming departments
+    let deptArr = []
+    let currentCart = getPendingCart()
+    let cartTotal = 0
+    let cartItemArr = []
+
+    const getDepartments = () => {
+      fetch('/depts')
+        .then(r => r.json())
+        .then(r => {
+          r.forEach(dept => {
+            // add department to array
+            deptArr.push({
+              id: dept.id,
+              name: dept.name
+            })
+          });
+        })
+        .catch(e => console.error(e))
+    }
+
+    // Display all cart items
+    const getCart = (cart) => {
+      // get all items in cart
+      fetch(`/cartitems/${cart.id}`)
+        .then(r => r.json())
+        .then(r => {
+          document.querySelector('#prodsList').innerHTML = ''
+          cartTotal = 0
+          carItems = []
+          // items
+          r.forEach(cartItem => {
+            cartTotal += parseInt(cartItem.qty) * parseFloat(cartItem.unitPrice)
+            cartItemArr.push(cartItem)
+            let listItem = document.createElement('li')
+            listItem.innerHTML =
+              ` <div class="row">
+                  <div class="col-sm-9">                             
+                     <div class="card">
+                       <div class="card-body">
+                         <h5 class="card-title">Name: ${cartItem.prodName}</h5>
+                         <h6 class="card-subtitle mb-2 text-muted">Stock Number: ${cartItem.inventoryNum}</h6>
+                         <p class="card-text">Description: ${cartItem.description}</p>
+                         <p class="card-text"> Price($): ${cartItem.unitPrice} / Qty: ${cartItem.qty}</p> 
+                       </div>
+                    </div>
+                 </div>
+               <div class="col-sm-3">
+                  <form>
+                     <div class="form-group">
+                       <label for="item${cartItem.id}" class='d-inline'>Qty:</label>
+                       <input type="number" class="form-control d-inline" name="item${cartItem.id}" id="item${cartItem.id}" min="1" value="1">
+                     </div>
+                    <button id="btnRemoveItem" class="btn btn-primary" value=${cartItem.id} data-value='${JSON.stringify(cartItem)}'>Remove</button>
+                   </form>         
+               </div>
+             </div>
+             `
+            document.querySelector('#prodsList').appendChild(listItem)
+          });
+          // display total
+          document.querySelector('#cartTotal').innerHTML = `$ ${cartTotal}`
+        })
+        .catch(e => console.error(e))
+    }
+
+    // remove an item from cart
+    const removeItemFromCart = (cartItem) => {
+      //  delete Cart item
+      fetch(`/cartitems/${cartItem.id}`, {
+          method: 'DELETE'
+        })
+        .then(r => {
+          getCart(currentCart)
+        })
+        .catch(e => console.error(e))
+    }
+
+    // update inventory totals
+    const updateInventory = (cartItem) => {
+
+      // get selected item 
+      fetch(`/prodcts/${cartItem.productId}`)
+        .then(r => r.json())
+        .then(r => {
+          // get current numbers
+          let stockQty = r.stockQty - parseInt(cartItem.qty)
+          let totalSales = r.totalSales + (parseFloat(cartItem.unitPrice) + parseFloat(cartItem.qty))
+          // update inventory and sales
+          fetch(`/prodcts/${cartItem.productId}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json ; charset=utf-8'
+              },
+              body: JSON.stringify({
+                stockQty: stockQty,
+                totalSales: totalSales
+              })
+            })
+            .then(r => {
+              // nothing
+            })
+            .catch(e => console.error(e))
+        })
+        .catch(e => console.error(e))
+
+    }
+
+    // remove teh cart and items from database
+    const removeCartFromDb = (currentCart) => {
+      //  cart-items remove
+      fetch(`/cartitems-all/${currentCart.id}`, {
+          method: 'DELETE'
+        })
+        .then(r => {
+          // Cart remove
+          fetch(`/carts/${currentCart.id}`, {
+              method: 'DELETE'
+            })
+            .then(r => {
+              // remove cart fro storage
+              removePendingCart()
+              // redirect
+              window.location = '/'
+            })
+            .catch(e => console.error(e))
+        })
+        .catch(e => console.error(e))
+    }
+
+    // place order
+    const placeOrder = (currentCart) => {
+      // update inventory
+      cartItemArr.forEach(cartItem => {
+        updateInventory(cartItem)
+      });
+      // remove order from datbase
+      removeCartFromDb(currentCart)
+    }
+
+    document.addEventListener('click', e => {
+      // override from-submit default behavior
+      event.preventDefault()
+      // select action 
+      if (e.target && e.target.id === 'btnShopMore') {
+        // redirect
+        window.location = '/'
+      } else if (e.target && e.target.id === 'btnPlaceOrder') {
+        // Place order
+        placeOrder(currentCart)
+      } else if (e.target && e.target.id === 'btnDeleteOrder') {
+        // remove cart
+        removeCartFromDb(currentCart)
+      } else if (e.target && e.target.id === 'btnRemoveItem') {
+        // remove item from cart
+        let cartItem = JSON.parse(e.target.getAttribute("data-value"))
+        // remove item from Cart
+        removeItemFromCart(cartItem)
+      } else if (e.target.getAttribute("class") === 'nav-link') {
+        // it is a nav link, redirect to the link
+        window.location = e.target.getAttribute("href")
+      }
+    })
+
+    // console.log("current cart:")
+    // console.log(currentCart)
+
+
+    getDepartments()
+    getCart(currentCart)
+
+
+    // General funciton................................................
+    function getPendingCart() {
+      let pendCart = sessionStorage.getItem("pacitCart")
+      return JSON.parse(pendCart)
+    }
+
+    function removePendingCart() {
+      sessionStorage.removeItem("pacitCart")
+    }
+
+    function getDeptId(deptName) {
+      let deptId = undefined
+      deptArr.forEach(dept => {
+        if (deptName === dept.name) {
+          deptId = dept.id
+        }
+      });
+      return deptId
+    }
+
+    function getDeptName(deptId) {
+      deptId = parseInt(deptId)
+      let deptName = undefined
+      deptArr.forEach(dept => {
+        if (deptId === parseInt(dept.id)) {
+          deptName = dept.name
+        }
+      });
+      return deptName
+    }
+  </script>
+
+</body>
+
+</html>
