@@ -65,8 +65,8 @@
         <input type="number" class="form-control" name="deptOverheadCosts" id="deptOverheadCosts" placeholder="Department overhead costs..">
       </div>
       <div class="form-group">
-        <label for="email">Email <span id="email"></span></label>
-        <input type="email" class="form-control" name="email" id="email" placeholder="Department overhead costs..">
+        <label for="deptEmail">Email <span id="deptEmailErr"></span></label>
+        <input type="email" class="form-control" name="deptEmail" id="deptEmail" placeholder="johnsmith@example.com">
       </div>
       
       <button type="submit" class="btn btn-primary" onclick="updateDept()">Update</button>
@@ -102,7 +102,7 @@
       // Get information from screen
       let deptName = document.querySelector('#deptName').value
       let deptOverheadCosts = document.querySelector('#deptOverheadCosts').value
-      let email = document.querySelector('#email').value
+      let deptEmail = document.querySelector('#deptEmail').value
       // if overhead cost not provided use a random value
       if (deptOverheadCosts === undefined || deptOverheadCosts === '') {
         deptOverheadCosts = 100 + Math.floor(Math.random() * 2000)
@@ -118,7 +118,7 @@
             body: JSON.stringify({
               name: deptName,
               overheadCosts: deptOverheadCosts,
-              email:email
+              email:deptEmail
             })
           })
           .then(r => {
@@ -139,7 +139,7 @@
         .then(r => {
           document.querySelector('#deptName').value = r.name
           document.querySelector('#deptOverheadCosts').value = r.overheadCosts
-          document.querySelector('#email').value = r.email
+          document.querySelector('#deptEmail').value = r.email
         })
         .catch(e => console.error(e))
     }
