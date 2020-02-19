@@ -67,7 +67,7 @@
           <!-- Nothing here (need to do a shift 5 instead) -->
         </div>
         <div class="col-sm-4">
-          <button class="btn btn-primary" onclick="viewOrder()">View favorite</button>
+          <button class="btn btn-primary" onclick="viewOrder()">View Cart</button>
           <!-- <input id="searchProduct" type="text" name="product" placehoder="item to search">
           <button onclick="findTodo()"><i class="fas fa-search"></i></button> -->
         </div>
@@ -161,7 +161,7 @@
               <label for="item${product.id}" class='d-inline'>Qty:</label>
               <input type="number" class="form-control d-inline" name="item${product.id}" id="item${product.id}" min="1" value="1">
             </div>
-           <button id="cartBnt" class="btn btn-primary" value=${product.id} data-value='${JSON.stringify(product)}'>Add to favorites</button>
+           <button id="cartBnt" class="btn btn-primary" value=${product.id} data-value='${JSON.stringify(product)}'>Add to Cart</button>
           </form>
        </div>
     </div>
