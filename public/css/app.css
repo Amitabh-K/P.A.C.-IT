@@ -349,10 +349,8 @@ main {
   color: white;
 }
 
-// forms
-.form-control {
-  margin: 1rem 0;
-}
+
+
 
 .form-control label, {
   display: block;
@@ -401,6 +399,8 @@ main {
   font-weight: bold;
 font-size: 1.6rem;
 padding: 1%;
+margin-top: 1rem;
+margin-bottom: 1rem;
 
 }
 
@@ -414,3 +414,20 @@ padding: 1%;
   font-weight: bold;
 }
 
+.container{
+  font: inherit;
+  border: 1px solid #00695c;
+  color: #00695c;
+  background: white;
+  border-radius: 3px;
+  
+}
+
+.card{
+  font: inherit;
+  border: 1px solid #00695c;
+  color: #00695c;
+  background: white;
+  border-radius: 3px;
+  
+}
