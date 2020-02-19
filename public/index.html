@@ -142,12 +142,12 @@
             <div class="card-body">
              <h5 class="card-title">Name: ${product.name}</h5>                     
 
-             <div class="card__image">
+             <div class="card__image mb-3">
            <img src="${product.inventoryNum}" alt="product">
        </div>
 
              <p class="card-text">Description: ${product.description}</p>
-             <p class="card-text"><strong>Seller</strong>: ${getDeptName(product.departmentId)} <br>  Price($): ${product.price}  Available Quantity: ${product.stockQty}</p> 
+             <p class="card-text"><strong>Seller</strong>: ${getDeptName(product.departmentId)} <br>  Price $${product.price} <br> Available Quantity: ${product.stockQty}</p> 
             </div>
           </div>
         </div>
