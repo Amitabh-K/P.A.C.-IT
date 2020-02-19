@@ -21,11 +21,11 @@ body {
 
 .gradBlue {
   /* Gradient for NavBar */
-  background-image: -webkit-linear-gradient(top, rgb(28, 14, 221), orange);
-  background-image: -moz-linear-gradient(top,rgb(28, 14, 221), orange);
-  background-image: -ms-linear-gradient(top, rgb(28, 14, 221), orange);
-  background-image: -o-linear-gradient(top, rgb(28, 14, 221), orange);
-  background-image: linear-gradient(top, rgb(28, 14, 221), orange);
+  background-image: -webkit-linear-gradient(top,#F65058FF, #28334AFF);
+  background-image: -moz-linear-gradient(top,#F65058FF, #28334AFF);
+  background-image: -ms-linear-gradient(top, #F65058FF, #28334AFF);
+  background-image: -o-linear-gradient(top, #F65058FF, #28334AFF);
+  background-image: linear-gradient(top, #F65058FF, #28334AFF);
 } 
 
 .imgRnd10 {

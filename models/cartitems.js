@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true
   })
 
-  // Provide point for associations 
+  
   CartItems.associate = (db) => {
-    // no association
+    // for future use..Amitabh
   }
 
   return CartItems
