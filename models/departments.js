@@ -4,6 +4,7 @@ module.exports = (sequelize,DataTypes) => {
   let Department = sequelize.define('departments', {
     name: DataTypes.STRING,
     overheadCosts: DataTypes.FLOAT,
+<<<<<<< HEAD
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -17,6 +18,12 @@ module.exports = (sequelize,DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     }
+=======
+    email: DataTypes.STRING
+  }, {
+    // Model tableName will be the same as the model name instead of being pluralized
+    freezeTableName: true
+>>>>>>> c300404e078a96b9823223bb8e2fda227ea8f16a
   });
   
     // Provide point for associations 
@@ -25,6 +32,7 @@ module.exports = (sequelize,DataTypes) => {
       db.departments.hasMany(db.products,{as: 'Products'})
     }
 
+<<<<<<< HEAD
       // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
       Department.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
@@ -35,5 +43,7 @@ module.exports = (sequelize,DataTypes) => {
     department.password = bcrypt.hashSync(department.password, bcrypt.genSaltSync(10), null);
   });
 
+=======
+>>>>>>> c300404e078a96b9823223bb8e2fda227ea8f16a
   return Department
 }

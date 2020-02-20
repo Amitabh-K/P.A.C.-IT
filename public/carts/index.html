@@ -187,35 +187,53 @@
         .catch(e => console.error(e))
     }
 
+   
     // update inventory totals
     const updateInventory = (cartItem) => {
 
-      // get selected item 
-      fetch(`/prodcts/${cartItem.productId}`)
-        .then(r => r.json())
-        .then(r => {
-          // get current numbers
-          let stockQty = r.stockQty - parseInt(cartItem.qty)
-          let totalSales = r.totalSales + (parseFloat(cartItem.unitPrice) + parseFloat(cartItem.qty))
-          // update inventory and sales
-          fetch(`/prodcts/${cartItem.productId}`, {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json ; charset=utf-8'
-              },
-              body: JSON.stringify({
-                stockQty: stockQty,
-                totalSales: totalSales
-              })
-            })
-            .then(r => {
-              // nothing
-            })
-            .catch(e => console.error(e))
-        })
-        .catch(e => console.error(e))
+// get selected item 
+fetch(`/prodcts/${cartItem.productId}`)
+  .then(r => r.json())
+  .then(r => {
+    // get current numbers
+    let stockQty = r.stockQty - parseInt(cartItem.qty)
+    let totalSales = r.totalSales + (parseFloat(cartItem.unitPrice) + parseFloat(cartItem.qty))
+    // update inventory and sales
 
+    if (stockQty = 0) {
+      
+   
+    fetch(`/prodcts/${cartItem.productId}`, 
+    
+    {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json ; charset=utf-8'
+        },
+        body: JSON.stringify({
+          stockQty: stockQty,
+          totalSales: totalSales
+        })
+      }
+      
+      
+      )
+
+  } else {
+
+    fetch(`/prodcts/${cartItem.productId}`, {
+    method: 'DELETE'
+  })
+      
     }
+
+
+  
+     
+  })
+  .catch(e => console.error(e))
+
+}
 
     // remove teh cart and items from database
     const removeCartFromDb = (currentCart) => {
