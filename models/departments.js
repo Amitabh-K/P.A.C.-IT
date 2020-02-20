@@ -16,9 +16,7 @@ module.exports = (sequelize,DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    // Model tableName will be the same as the model name instead of being pluralized
-    freezeTableName: true
+    }
   });
   
     // Provide point for associations 
@@ -33,8 +31,8 @@ module.exports = (sequelize,DataTypes) => {
   };
   // Hooks are automatic methods that run during various phases of the User Model lifecycle
   // In this case, before a User is created, we will automatically hash their password
-  Department.addHook("beforeCreate", function(departments) {
-    Department.password = bcrypt.hashSync(departments.password, bcrypt.genSaltSync(10), null);
+  Department.addHook("beforeCreate", function(department) {
+    department.password = bcrypt.hashSync(department.password, bcrypt.genSaltSync(10), null);
   });
 
   return Department
