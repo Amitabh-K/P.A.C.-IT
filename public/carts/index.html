@@ -198,7 +198,13 @@
           let stockQty = r.stockQty - parseInt(cartItem.qty)
           let totalSales = r.totalSales + (parseFloat(cartItem.unitPrice) + parseFloat(cartItem.qty))
           // update inventory and sales
-          fetch(`/prodcts/${cartItem.productId}`, {
+
+          if (stockQty = 0) {
+            
+         
+          fetch(`/prodcts/${cartItem.productId}`, 
+          
+          {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json ; charset=utf-8'
@@ -207,11 +213,22 @@
                 stockQty: stockQty,
                 totalSales: totalSales
               })
-            })
-            .then(r => {
-              // nothing
-            })
-            .catch(e => console.error(e))
+            }
+            
+            
+            )
+
+        } else {
+
+          fetch(`/prodcts/${cartItem.productId}`, {
+          method: 'DELETE'
+        })
+            
+          }
+
+
+        
+           
         })
         .catch(e => console.error(e))
 
