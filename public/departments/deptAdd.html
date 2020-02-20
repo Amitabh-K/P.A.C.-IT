@@ -68,12 +68,14 @@
         <label for="deptEmail">Email <span id="deptEmailErr"></span></label>
         <input type="email" class="form-control" name="deptEmail" id="deptEmail" placeholder="johnsmith@example.com">
       </div>
+      <div class="form-group">
+        <label for="deptPassword">Password <span id="deptPasswordErr"></span></label>
+        <input type="password" class="form-control" name="deptPassword" id="deptPassword" placeholder="johnsmith@example.com">
+      </div>
       <button type="submit" class="btn btn-primary" onclick="addDept()">Add</button>
       <button type="submit" class="btn btn-danger" onclick="cancelAction()">Cancel</button>
     </form>
-
   </div>
-
 </div>
   <!-- end container -->
 
@@ -108,6 +110,9 @@
           deptOverHeadCosts = 100 + Math.floor(Math.random() * 2000)
         }
 
+        var db = require(".../models");
+      var passport = require(".../config/passport");
+
         // save data
         fetch('/depts', {
             method: 'POST',
@@ -117,7 +122,8 @@
             body: JSON.stringify({
               name: deptName,
               overheadCosts: deptOverHeadCosts,
-              email:deptEmail
+              email:deptEmail,
+              password:deptPassword
             })
           })
           .then(r => {
