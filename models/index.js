@@ -11,8 +11,8 @@ const basename = path.basename(__filename)
 const env = process.env.NODE_ENV || 'development'
 const config = require(path.join(__dirname, '..', 'config', 'config.json'))[env]
 let db = {}
-const sequelize = config.use_env_variable ? new SQLZ(process.env[config.use_env_variable], config) :
-  new SQLZ(config.database, config.username, config.password, config)
+const sequelize = config.use_env_variable ? new SQLZ(process.env[config.use_env_variable], config) 
+       : new SQLZ(config.database, config.username, config.password, config)
 
 fs
   .readdirSync(__dirname)
