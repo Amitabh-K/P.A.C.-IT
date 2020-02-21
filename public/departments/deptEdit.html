@@ -61,16 +61,16 @@
         <input type="text" class="form-control" name="deptName" id="deptName" placeholder="Department name..">
       </div>
       <div class="form-group">
-        <label for="deptOverheadCosts">Commission <span id="deptOverheadCostErr"></span></label>
-        <input type="number" class="form-control" name="deptOverheadCosts" id="deptOverheadCosts" placeholder="Department overhead costs..">
+        <label for="commission">Commission <span id="deptOverheadCostErr"></span></label>
+        <input type="number" class="form-control" name="commission" id="commission" placeholder="Department overhead costs..">
       </div>
       <div class="form-group">
-        <label for="deptEmail">Email <span id="deptEmailErr"></span></label>
-        <input type="email" class="form-control" name="deptEmail" id="deptEmail" placeholder="johnsmith@example.com">
+        <label for="email">Email <span id="emailErr"></span></label>
+        <input type="email" class="form-control" name="email" id="email" placeholder="johnsmith@example.com">
       </div>
       <div class="form-group">
-        <label for="deptPassword">Password <span id="deptPasswordErr"></span></label>
-        <input type="password" class="form-control" name="deptPassword" id="deptPassword" placeholder="">
+        <label for="password">Password <span id="passwordErr"></span></label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="">
       </div>
       
       <button type="submit" class="btn btn-primary" onclick="updateDept()">Update</button>
@@ -105,11 +105,11 @@
       document.querySelector('#deptNameErr').innerHTML = ''
       // Get information from screen
       let deptName = document.querySelector('#deptName').value
-      let deptOverheadCosts = document.querySelector('#deptOverheadCosts').value
-      let deptEmail = document.querySelector('#deptEmail').value
+      let commission = document.querySelector('#commission').value
+      let email = document.querySelector('#email').value
       // if overhead cost not provided use a random value
-      if (deptOverheadCosts === undefined || deptOverheadCosts === '') {
-        deptOverheadCosts = 100 + Math.floor(Math.random() * 2000)
+      if (commission === undefined || commission === '') {
+        commission = 100 + Math.floor(Math.random() * 2000)
       }
 
       if (document.querySelector('#deptName').value) {
@@ -121,8 +121,8 @@
             },
             body: JSON.stringify({
               name: deptName,
-              overheadCosts: deptOverheadCosts,
-              email:deptEmail
+              commission: commission,
+              email:email
             })
           })
           .then(r => {
@@ -142,8 +142,8 @@
         .then(r => r.json())
         .then(r => {
           document.querySelector('#deptName').value = r.name
-          document.querySelector('#deptOverheadCosts').value = r.overheadCosts
-          document.querySelector('#deptEmail').value = r.email
+          document.querySelector('#commission').value = r.overheadCosts
+          document.querySelector('#email').value = r.email
         })
         .catch(e => console.error(e))
     }

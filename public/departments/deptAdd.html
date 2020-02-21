@@ -62,7 +62,7 @@
       </div>
       <div class="form-group">
         <label for="commission">Commission<span id="commissionErr"></span></label>
-        <input type="number" class="form-control" name="commission" id="commission" placeholder="john.smith@gmail.com">
+        <input type="number" class="form-control" name="commission" id="commission" placeholder="">
       </div>
       <div class="form-group">
         <label for="email">Email <span id="emailErr"></span></label>
@@ -122,7 +122,7 @@
             },
             body: JSON.stringify({
               name: deptName,
-              overheadCosts: commission,
+              commission: commission,
               email:email,
               password:password
             })

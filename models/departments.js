@@ -3,7 +3,7 @@ module.exports = (sequelize,DataTypes) => {
 
   let Department = sequelize.define('Department', {
     name: DataTypes.STRING,
-    commissions: DataTypes.FLOAT,
+    commission: DataTypes.FLOAT,
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {
