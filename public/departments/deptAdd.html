@@ -68,6 +68,10 @@
         <label for="deptEmail">Email <span id="deptEmailErr"></span></label>
         <input type="email" class="form-control" name="deptEmail" id="deptEmail" placeholder="johnsmith@example.com">
       </div>
+      <div class="form-group">
+        <label for="deptPassword">Password <span id="deptPasswordErr"></span></label>
+        <input type="password" class="form-control" name="deptPassword" id="deptPassword" placeholder="">
+      </div>
       <button type="submit" class="btn btn-primary" onclick="addDept()">Add</button>
       <button type="submit" class="btn btn-danger" onclick="cancelAction()">Cancel</button>
     </form>
@@ -103,6 +107,7 @@
         let deptName = document.querySelector('#deptName').value
         let deptOverHeadCosts = document.querySelector('#deptOverheadCosts').value
         let deptEmail = document.querySelector('#deptEmail').value
+        let deptPassword = document.querySelector('#deptPassword').value
         // if overhead cost not provided use a random value
         if (deptOverHeadCosts === undefined || deptOverHeadCosts === '') {
           deptOverHeadCosts = 100 + Math.floor(Math.random() * 2000)
@@ -117,7 +122,8 @@
             body: JSON.stringify({
               name: deptName,
               overheadCosts: deptOverHeadCosts,
-              email:deptEmail
+              email:deptEmail,
+              password:deptPassword
             })
           })
           .then(r => {
