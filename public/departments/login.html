@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>pacit Departments</title>
+  <link rel="icon" href="../images/onlinestoreicon.png">
+
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO'
+    crossorigin='anonymous'>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/all.css' integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns'
+    crossorigin='anonymous'>
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body>
+  <div class="container">
+  <header class="header">
+    <!-- Navigation var on top -->
+    <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
+      <!-- Brand -->
+      <a class="navbar-brand">
+        <a class="nav-link d-inline" href="/">
+          <img src="./images/onlinestore.png" alt="Logo" class="brandLogo imgRnd10 imageShadow">
+        </a>
+      </a>
+
+      <!-- Button for small devices -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Menu-Link options -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ml-auto px-5">
+            <a class="nav-link" href="/">Buy</a>
+          </li>
+          <li class="nav-item ml-auto px-5">
+            <a class="nav-link" href="/prods">Sell</a>
+          </li>
+          <li class="nav-item ml-auto ">
+            <a class="nav-link active btn-primary rounded px-5" href="/depmts">Admin</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </header>
+  <!-- header end -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Login Form</h2>
+        <form class="login">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="email-input" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password-input" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-default">Login</button>
+        </form>
+        <br />
+        <p>Or sign up <a href="/depmts-add">here</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- end container -->
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <script>
+    document.addEventListener('click', e => {
+      if (e.target && e.target.id === 'updBnt') {
+        //  redirect to the link (how to pass a parameter on new location? )
+        window.location = `./depmts-edit?id=${e.target.value}`
+      }  
+ 
+      if (e.target && e.target.id === 'dltBnt') {
+        //  redirect to the link
+        window.location = `./depmts-delete?id=${e.target.value}`
+      }
+    })
+
+    // get list of all departments
+    const getDepartments = () => {
+      fetch('/depts')
+        .then(r => r.json())
+        .then(r => {
+          document.querySelector('#deptList').innerHTML = ''
+          r.forEach(dept => {
+            let listItem = document.createElement('li')
+            listItem.innerHTML =
+              ` <div class="row">
+                   <div class="col-sm-9">                             
+                      <div class="card">
+                       <div class="card-body">
+                         <h5 class="card-title">Seller: ${dept.name}</h5>
+                         <p class="card-text">Commission: ${dept.overheadCosts}</p> 
+                         <p class="card-text">Email: ${dept.email}</p> 
+                      </div>
+                     </div>
+                   </div>
+                   <div class="col-sm-3">
+                      <button id="updBnt" class="btn btn-primary" value=${dept.id}>Edit</button>
+                      <button id="dltBnt" class="btn btn-primary" value=${dept.id}>Remove</button>
+                   </div>
+              </div>
+              `
+            document.querySelector('#deptList').appendChild(listItem)
+          });
+        })
+        .catch(e => console.error(e))
+    }
+
+    getDepartments()
+  </script>
+
+</body>
+
+</html>

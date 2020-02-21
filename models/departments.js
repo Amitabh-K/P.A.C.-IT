@@ -1,9 +1,9 @@
 // Department Model
 module.exports = (sequelize,DataTypes) => {
 
-  let Department = sequelize.define('departments', {
+  let Department = sequelize.define('Department', {
     name: DataTypes.STRING,
-    overheadCosts: DataTypes.FLOAT,
+    commissions: DataTypes.FLOAT,
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {
@@ -14,7 +14,7 @@ module.exports = (sequelize,DataTypes) => {
     // Provide point for associations 
     Department.associate = (db) => {
       // Department has a one-to-many relationship with Products
-      db.departments.hasMany(db.products,{as: 'Products'})
+      db.Department.hasMany(db.products,{as: 'Products'})
     }
 
   return Department
