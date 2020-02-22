@@ -19,8 +19,8 @@
 
   <div class="container">
 
-  <header class="header mt-3">
-    <!-- Navigation var on top -->
+    <header class="header mt-3">        <!-- Navigation var on top -->
+
     <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
       <!-- Brand -->
       <a class="navbar-brand">
@@ -37,7 +37,7 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-auto active btn-primary rounded px-5">
+          <li class="nav-item ml-auto active btn-dark rounded px-5">
             <a class="nav-link" href="/">Buy</a>
           </li>
           <li class="nav-item ml-auto px-5">
@@ -65,6 +65,7 @@
           <select class="form-control" id="deptList" onchange="selectChange()"> </select>        
         </div>
 
+
         <div class="mx-2">
 
           <button class="btn" onclick="login()">login</button>
@@ -77,9 +78,10 @@
 
         </div>
 
-        <div class="mr-3">
 
-          <button class="btn" onclick="viewOrder()">View Cart</button>
+        <div class="mr-3">
+          <button class="btn px-5 " onclick="viewOrder()"><i class="fas fa-shopping-cart">...Cart</i>
+          </button>
 
         </div>
       </div>
@@ -172,7 +174,7 @@
               <label for="item${product.id}" class='d-inline'>Qty:</label>
               <input type="number" class="form-control d-inline" name="item${product.id}" id="item${product.id}" min="1" value="1">
             </div>
-           <button id="cartBnt" class="btn btn-primary" value=${product.id} data-value='${JSON.stringify(product)}'>Add to Cart</button>
+           <button id="cartBnt" class="btn btn-dark" value=${product.id} data-value='${JSON.stringify(product)}'>Add to Cart</button>
           </form>
        </div>
     </div>
@@ -193,7 +195,29 @@
           r.forEach(product => {
             let listItem = document.createElement('li')
             listItem.innerHTML =
-              ` 
+
+              ` <div class="row">
+                  <div class="col-sm-10">                             
+                   <div class="card">
+                     <div class="card-body">
+                       <h5 class="card-title">Name: ${product.name}</h5>
+                       <h6 class="card-subtitle mb-2 text-muted">Stock Number: ${product.inventoryNum}</h6>
+                       <p class="card-text">Description: ${product.description}</p>
+                       <p class="card-text">Depmt: ${getDeptName(product.departmentId)} /  Price($): ${product.price} / Stock: ${product.stockQty}</p> 
+                    </div>
+                  </div>
+                 </div>
+                 <div class="col-sm-2">
+                   <form>
+                     <div class="form-group">
+                       <label for="item${product.id}" class='d-inline'>Qty:</label>
+                       <input type="number" class="form-control d-inline" name="item${product.id}" id="item${product.id}" min="1" value="1">
+                     </div>
+                    <button id="cartBnt" class="btn btn-dark" value=${product.id} data-value='${JSON.stringify(product)}'>Add to Cart</button>
+                   </form>
+                </div>
+               </div>
+
              `
             document.querySelector('#prodsList').appendChild(listItem)
           });
