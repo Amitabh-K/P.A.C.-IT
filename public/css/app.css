@@ -21,11 +21,11 @@ body {
 
 .gradBlue {
   /* Gradient for NavBar */
-  background-image: -webkit-linear-gradient(top,#F65058FF, #28334AFF);
-  background-image: -moz-linear-gradient(top,#F65058FF, #28334AFF);
-  background-image: -ms-linear-gradient(top, #F65058FF, #28334AFF);
-  background-image: -o-linear-gradient(top, #F65058FF, #28334AFF);
-  background-image: linear-gradient(top, #F65058FF, #28334AFF);
+  background-image: -webkit-linear-gradient(top,teal, #28334AFF);
+  background-image: -moz-linear-gradient(top,teal, #28334AFF);
+  background-image: -ms-linear-gradient(top, teal, #28334AFF);
+  background-image: -o-linear-gradient(top, teal, #28334AFF);
+  background-image: linear-gradient(top, teal, #28334AFF);
 } 
 
 .imgRnd10 {
@@ -395,8 +395,7 @@ main {
 }
 
 .product{
-  background-color:teal;
-  color:#ecd5a7;
+  background-color:rgb(231, 225, 213);
   font-weight: bold;
 font-size: 1.6rem;
 padding: 1%;
@@ -432,3 +431,26 @@ margin-bottom: 1rem;
   border-radius: 3px;
   
 }
+
+
+.fa-shopping-cart {
+  border: 0px solid #00695c;
+  color: #00695c; 
+  border-radius: 0;
+}
+
+.fa-shopping-cart:hover
+ {
+  background-color: #00695c;
+  color: white;
+  border-radius: 0;
+
+}
+
+
+
+
+
+
+
+

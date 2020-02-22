@@ -18,8 +18,8 @@
 <body>
   <div class="container">
 
-    <header class="header mt-3">
-          <!-- Navigation var on top -->
+    <header class="header mt-3">    
+    <!-- Navigation var on top -->
     <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
       <!-- Brand -->
       <a class="navbar-brand">
@@ -43,8 +43,8 @@
             <a class="nav-link" href="/prods">Sell</a>
           </li
           <li class="nav-item ml-auto">
-            <a class="nav-link active btn-primary rounded px-5" href="/depmts">Admin</a>
-          </li>
+            <a class="nav-link active btn-dark rounded px-5" href="/depmts">Admin</a>
+          </li>>
         </ul>
       </div>
     </nav>
@@ -61,18 +61,14 @@
         <input type="text" class="form-control" name="deptName" id="deptName" placeholder="John Smith">
       </div>
       <div class="form-group">
-        <label for="commission">Commission<span id="commissionErr"></span></label>
-        <input type="number" class="form-control" name="commission" id="commission" placeholder="">
+        <label for="deptOverheadCosts">Commission<span id="deptOverheadCostErr"></span></label>
+        <input type="number" class="form-control" name="deptOverheadCosts" id="deptOverheadCosts" placeholder="john.smith@gmail.com">
       </div>
       <div class="form-group">
-        <label for="email">Email <span id="emailErr"></span></label>
-        <input type="email" class="form-control" name="email" id="email" placeholder="johnsmith@example.com">
+        <label for="deptEmail">Email <span id="deptEmailErr"></span></label>
+        <input type="email" class="form-control" name="deptEmail" id="deptEmail" placeholder="johnsmith@example.com">
       </div>
-      <div class="form-group">
-        <label for="password">Password <span id="passwordErr"></span></label>
-        <input type="password" class="form-control" name="password" id="password" placeholder="">
-      </div>
-      <button type="submit" class="btn btn-primary" onclick="addDept()">Add</button>
+      <button type="submit" class="btn btn-dark" onclick="addDept()">Add</button>
       <button type="submit" class="btn btn-danger" onclick="cancelAction()">Cancel</button>
     </form>
 
@@ -90,7 +86,6 @@
   <script src="../scripts/app.js"></script>
 
   <script>
-    
     const cancelAction = () => {
       // oveeride form-submit defualt behavior
       event.preventDefault()
@@ -106,12 +101,11 @@
       if (document.querySelector('#deptName').value) {
         // Get information from screen
         let deptName = document.querySelector('#deptName').value
-        let commission = document.querySelector('#commission').value
-        let email = document.querySelector('#email').value
-        let password = document.querySelector('#password').value
+        let deptOverHeadCosts = document.querySelector('#deptOverheadCosts').value
+        let deptEmail = document.querySelector('#deptEmail').value
         // if overhead cost not provided use a random value
-        if (commission === undefined || commission === '') {
-          commission = 100 + Math.floor(Math.random() * 2000)
+        if (deptOverHeadCosts === undefined || deptOverHeadCosts === '') {
+          deptOverHeadCosts = 100 + Math.floor(Math.random() * 2000)
         }
 
         // save data
@@ -122,9 +116,8 @@
             },
             body: JSON.stringify({
               name: deptName,
-              commission: commission,
-              email:email,
-              password:password
+              overheadCosts: deptOverHeadCosts,
+              email:deptEmail
             })
           })
           .then(r => {
