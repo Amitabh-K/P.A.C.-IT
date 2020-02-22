@@ -9,9 +9,9 @@ module.exports = (app) => {
   
   app.get("/signup", function(req, res) {
     // If the user already has an account send them to the members page
-    // if (req.user) {
-    //   res.redirect("/");
-    // }
+    if (req.user) {
+      res.redirect("/");
+    }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
