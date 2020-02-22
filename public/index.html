@@ -1,166 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>pacit Store</title>
+    <link rel="icon" href="./images/onlinestoreicon.png" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>pacit Store</title>
-  <link rel="icon" href="./images/onlinestoreicon.png">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
+      integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/app.css" />
+  </head>
 
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO'
-    crossorigin='anonymous'>
-  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/all.css' integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns'
-    crossorigin='anonymous'>
-  <link rel="stylesheet" href="./css/app.css">
-</head>
+  <body>
+    <div class="container">
+      <header class="header mt-3">
+        <!-- Navigation var on top -->
+        <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
+          <!-- Brand -->
+          <a class="navbar-brand">
+            <a class="nav-link d-inline" href="/">
+              <img
+                src="./images/onlinestore.png"
+                alt="Logo"
+                class="brandLogo imgRnd10 imageShadow"
+              />
+            </a>
+          </a>
 
-<body>
+          <!-- Button for small devices -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#collapsibleNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Menu-Link options -->
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item ml-auto active btn-primary rounded px-5">
+                <a class="nav-link" href="/">Buy</a>
+              </li>
+              <li class="nav-item ml-auto px-5">
+                <a class="nav-link" href="/prods">Sell</a>
+              </li>
+              <li class="nav-item ml-auto px-5">
+                <a class="nav-link" href="/depmts">Admin</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
 
-  <div class="container">
+      <!-- header end -->
 
-  <header class="header mt-3">
-    <!-- Navigation var on top -->
-    <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
-      <!-- Brand -->
-      <a class="navbar-brand">
-        <a class="nav-link d-inline" href="/">
-          <img src="./images/onlinestore.png" alt="Logo" class="brandLogo imgRnd10 imageShadow">
-        </a>
-      </a>
-
-      <!-- Button for small devices -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- Menu-Link options -->
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-auto active btn-primary rounded px-5">
-            <a class="nav-link" href="/">Buy</a>
-          </li>
-          <li class="nav-item ml-auto px-5">
-            <a class="nav-link" href="/prods">Sell</a>
-          </li>
-          <li class="nav-item ml-auto px-5">
-            <a class="nav-link" href="/depmts">Admin</a>
-          </li>
-        </ul>
-      </div>
-              
-    </nav>
-    
-  </header>
-  
-  <!-- header end -->
-
-
-
-  
-     
       <div class="row mt-3 d-flex justify-content-end ">
-
         <div class=" ml-3">
-          <select class="form-control" id="deptList" onchange="selectChange()"> </select>        
+          <select class="form-control" id="deptList" onchange="selectChange()">
+          </select>
         </div>
 
         <div class="mx-2">
-
           <button class="btn" onclick="login()">login</button>
-
         </div>
-        
+
         <div class="mx-2">
-
           <button class="btn" onclick="logout()">Logout</button>
-
         </div>
 
         <div class="mr-3">
-
           <button class="btn" onclick="viewOrder()">View Cart</button>
-
         </div>
       </div>
-    
-  
 
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h4 class=" product">Products for sale</h4>
-        <ul id="prodsList">
-          <!-- Products will be luisted here -->
-        </ul>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h4 class=" product">Products for sale</h4>
+            <ul id="prodsList">
+              <!-- Products will be luisted here -->
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- end container -->
 
-  </div>
-  </div>
-  <!-- end container -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
 
+    <script>
+      // keep a collection of incoming departments
+      let deptArr = [];
+      let currentCart = getPendingCart();
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
+      const getDepartments = () => {
+        fetch("/depts")
+          .then(r => r.json())
+          .then(r => {
+            document.querySelector("#deptList").innerHTML = "";
 
-  <script>
-    // keep a collection of incoming departments
-    let deptArr = []
-    let currentCart = getPendingCart()
+            let listOption = document.createElement("option");
+            listOption.innerHTML = `<option data-value="all">All Sellers</option>`;
+            document.querySelector("#deptList").appendChild(listOption);
 
-    const getDepartments = () => {
-      fetch('/depts')
-        .then(r => r.json())
-        .then(r => {
-          document.querySelector('#deptList').innerHTML = ''
+            r.forEach(dept => {
+              // add department to array
+              deptArr.push({
+                id: dept.id,
+                name: dept.name
+              });
+              // add department name to selector
+              let listOption = document.createElement("option");
+              listOption.innerHTML = `<option data-value="${dept.Id}">${dept.name}</option>`;
+              document.querySelector("#deptList").appendChild(listOption);
+            });
+          })
+          .catch(e => console.error(e));
+      };
 
-          let listOption = document.createElement('option')
-          listOption.innerHTML = `<option data-value="all">All Sellers</option>`
-          document.querySelector('#deptList').appendChild(listOption)
-
-          r.forEach(dept => {
-            // add department to array
-            deptArr.push({
-              id: dept.id,
-              name: dept.name
-            })
-            // add department name to selector
-            let listOption = document.createElement('option')
-            listOption.innerHTML = `<option data-value="${dept.Id}">${dept.name}</option>`
-            document.querySelector('#deptList').appendChild(listOption)
-          });
-        })
-        .catch(e => console.error(e))
-    }
-
-
-    const getProducts = () => {
-
-      fetch('/prodcts')
-        .then(r => r.json())
-        .then(r => {
-          document.querySelector('#prodsList').innerHTML = ''
-          r.forEach(product => {
-            let listItem = document.createElement('li')
-            listItem.innerHTML =
-              ` 
+      const getProducts = () => {
+        fetch("/prodcts")
+          .then(r => r.json())
+          .then(r => {
+            document.querySelector("#prodsList").innerHTML = "";
+            r.forEach(product => {
+              let listItem = document.createElement("li");
+              listItem.innerHTML = ` 
               <div class="row">
         <div class="col-sm-10">                             
           <div class="card">
             <div class="card-body">
-             <h5 class="card-title">Name: ${product.name}</h5>                     
+             <h5 class="card-title">Name: ${
+               product.name
+             }</h5>                     
 
              <div class="card__image mb-3">
            <img src="${product.inventoryNum}" alt="product">
        </div>
 
              <p class="card-text">Description: ${product.description}</p>
-             <p class="card-text"><strong>Seller</strong>: ${getDeptName(product.departmentId)} <br>  Price $${product.price} <br> Available Quantity: ${product.stockQty}</p> 
+             <p class="card-text"><strong>Seller</strong>: ${getDeptName(
+               product.departmentId
+             )} <br>  Price $${product.price} <br> Available Quantity: ${
+                product.stockQty
+              }</p> 
             </div>
           </div>
         </div>
@@ -170,97 +179,97 @@
           <form>
             <div class="form-group">
               <label for="item${product.id}" class='d-inline'>Qty:</label>
-              <input type="number" class="form-control d-inline" name="item${product.id}" id="item${product.id}" min="1" value="1">
+              <input type="number" class="form-control d-inline" name="item${
+                product.id
+              }" id="item${product.id}" min="1" value="1">
             </div>
-           <button id="cartBnt" class="btn btn-primary" value=${product.id} data-value='${JSON.stringify(product)}'>Add to Cart</button>
+           <button id="cartBnt" class="btn btn-primary" value=${
+             product.id
+           } data-value='${JSON.stringify(product)}'>Add to Cart</button>
           </form>
        </div>
     </div>
-            `
+            `;
 
-            document.querySelector('#prodsList').appendChild(listItem)
-          });
-        })
-        .catch(e => console.error(e))
-    }
+              document.querySelector("#prodsList").appendChild(listItem);
+            });
+          })
+          .catch(e => console.error(e));
+      };
 
-    const getProductsByDept = (deptId) => {
+      const getProductsByDept = deptId => {
+        fetch(`/dept-prodcts/${deptId}`)
+          .then(r => r.json())
+          .then(r => {
+            document.querySelector("#prodsList").innerHTML = "";
+            r.forEach(product => {
+              let listItem = document.createElement("li");
+              listItem.innerHTML = ` 
+             `;
+              document.querySelector("#prodsList").appendChild(listItem);
+            });
+          })
+          .catch(e => console.error(e));
+      };
+      document.addEventListener("click", e => {
+        // override from-submit default behavior
+        event.preventDefault();
 
-      fetch(`/dept-prodcts/${deptId}`)
-        .then(r => r.json())
-        .then(r => {
-          document.querySelector('#prodsList').innerHTML = ''
-          r.forEach(product => {
-            let listItem = document.createElement('li')
-            listItem.innerHTML =
-              ` 
-             `
-            document.querySelector('#prodsList').appendChild(listItem)
-          });
-        })
-        .catch(e => console.error(e))
-    }
-    document.addEventListener('click', e => {
-      // override from-submit default behavior
-      event.preventDefault()
+        // Process selection
+        if (e.target && e.target.id === "cartBnt") {
+          // get product data:
+          // 1. get associated product with btn selection
+          let product = JSON.parse(e.target.getAttribute("data-value"));
+          // 2. retreive quantity
+          let qty = document.querySelector(`#item${e.target.value}`).value;
 
-      // Process selection 
-      if (e.target && e.target.id === 'cartBnt') {
-        // get product data:
-        // 1. get associated product with btn selection
-        let product = JSON.parse(e.target.getAttribute("data-value"))
-        // 2. retreive quantity
-        let qty = document.querySelector(`#item${e.target.value}`).value
-        
-        if (currentCart === null) {
-          // create cart a+ selected item
-          createCart(product, qty)
-        } else {
-          // create selected item only 
-          createCartItem(currentCart, product, qty)
+          if (currentCart === null) {
+            // create cart a+ selected item
+            createCart(product, qty);
+          } else {
+            // create selected item only
+            createCartItem(currentCart, product, qty);
+          }
+        } // if (e.target ...
+        else if (e.target.getAttribute("class") === "nav-link") {
+          // it is a nav link, redirect to the link
+          window.location = e.target.getAttribute("href");
         }
-      } // if (e.target ...
-      else if (e.target.getAttribute("class") === 'nav-link') {
-        // it is a nav link, redirect to the link
-        window.location = e.target.getAttribute("href")
-      }
+      });
 
-    })
-
-    const createCart = (product, qty) => {
-      // create cart
-      fetch('/carts', {
-          method: 'POST',
+      const createCart = (product, qty) => {
+        // create cart
+        fetch("/carts", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json ; charset=utf-8'
+            "Content-Type": "application/json ; charset=utf-8"
           },
           body: JSON.stringify({
             orderDate: new Date()
           })
         })
-        .then(r => r.json())
-        .then(r => {
-          // Save create Cart in a variable (r is created cart)
-          currentCart = r
-          // save current cart in the session
-          storePendingCart(currentCart)
-          // create cart item  
-          createCartItem(currentCart, product, qty)
-        })
-        .catch(e => console.error(e))
-    }
+          .then(r => r.json())
+          .then(r => {
+            // Save create Cart in a variable (r is created cart)
+            currentCart = r;
+            // save current cart in the session
+            storePendingCart(currentCart);
+            // create cart item
+            createCartItem(currentCart, product, qty);
+          })
+          .catch(e => console.error(e));
+      };
 
-    const createCartItem = (cart, product, qty) => {
-       
-      // add item to cart
-      fetch('/cartitems', {
-          method: 'POST',
+      const createCartItem = (cart, product, qty) => {
+        // add item to cart
+        fetch("/cartitems", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json ; charset=utf-8'
+            "Content-Type": "application/json ; charset=utf-8"
           },
           body: JSON.stringify({
             cartId: cart.id,
-            deptId : product.departmentId,
+            deptId: product.departmentId,
             productId: product.id,
             prodName: product.name,
             inventoryNum: product.inventoryNum,
@@ -269,85 +278,77 @@
             qty: qty
           })
         })
-        .then(r => {
+          .then(r => {
+            window.location = "./carts";
+          })
+          .catch(e => console.error(e));
+      };
 
-         
-         window.location = './carts'
-          
-        })
-        .catch(e => console.error(e))
-    }
+      // Filter prod in screen by deparment
+      const selectChange = () => {
+        if (document.getElementById("deptList").value === "All Departments") {
+          getProducts();
+        } else {
+          let deptId = getDeptId(document.getElementById("deptList").value);
+          getProductsByDept(deptId);
+        }
+      };
 
-    // Filter prod in screen by deparment
-    const selectChange = () => {
-      if (document.getElementById("deptList").value === 'All Departments') {
-        getProducts()
-      } else {
-        let deptId = getDeptId(document.getElementById("deptList").value)
-        getProductsByDept(deptId)
+      const viewOrder = () => {
+        // override form-sumbit defautl behavior
+        event.preventDefault();
+        // view order
+        window.location = `./carts`;
+      };
+
+      getDepartments();
+      getProducts();
+
+      const login = () => {
+        // override form-sumbit defautl behavior
+        event.preventDefault();
+        // view order
+        window.location = `./login`;
+      };
+      const logout = () => {
+        // override form-sumbit defautl behavior
+        event.preventDefault();
+        // view order
+        window.location = `./signup`;
+      };
+
+      // General funciton................................................
+      function getPendingCart() {
+        let pendCart = sessionStorage.getItem("pacitCart");
+        return JSON.parse(pendCart);
       }
-    }
 
-    const viewOrder = () => {
-      // override form-sumbit defautl behavior
-      event.preventDefault()
-      // view order
-      window.location = `./carts`
-    }
+      function storePendingCart(cart) {
+        sessionStorage.setItem("pacitCart", JSON.stringify(cart));
+      }
 
-    getDepartments()
-    getProducts()
+      function getDeptId(deptName) {
+        let deptId = undefined;
+        deptArr.forEach(dept => {
+          if (deptName === dept.name) {
+            deptId = dept.id;
+          }
+        });
+        return deptId;
+      }
 
-    const login = () => {
-      // override form-sumbit defautl behavior
-      event.preventDefault()
-      // view order
-      window.location = `./login`
-    }
-    const logout = () => {
-      // override form-sumbit defautl behavior
-      event.preventDefault()
-      // view order
-      window.location = `./signup`
-    }
-
-
-
-
-
-
-    // General funciton................................................
-    function getPendingCart() {
-      let pendCart = sessionStorage.getItem("pacitCart")
-      return JSON.parse(pendCart)
-    }
-
-    function storePendingCart(cart) {
-      sessionStorage.setItem("pacitCart", JSON.stringify(cart))
-    }
-
-    function getDeptId(deptName) {
-      let deptId = undefined
-      deptArr.forEach(dept => {
-        if (deptName === dept.name) {
-          deptId = dept.id
-        }
-      });
-      return deptId
-    }
-
-    function getDeptName(deptId) {
-      deptId = parseInt(deptId)
-      let deptName = undefined
-      deptArr.forEach(dept => {
-        if (deptId === parseInt(dept.id)) {
-          deptName = dept.name
-        }
-      });
-      return deptName
-    }
-  </script>
-
-</body>
-
+      function getDeptName(deptId) {
+        debugger;
+        deptId = parseInt(deptId);
+        let deptName = "pizza";
+        deptArr.forEach(dept => {
+          if (deptId === parseInt(dept.id)) {
+            deptName = dept.name;
+            console.log(product.departmentId);
+          }
+        });
+        return deptName;
+      }
+    </script>
+  </body>
 </html>
