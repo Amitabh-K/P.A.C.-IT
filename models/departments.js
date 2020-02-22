@@ -8,7 +8,7 @@ module.exports = (sequelize,DataTypes) => {
   }, {
     // Model tableName will be the same as the model name instead of being pluralized
     freezeTableName: true
-  });
+  }); 
   
     // Provide point for associations 
     Department.associate = (db) => {
