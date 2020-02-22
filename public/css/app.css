@@ -395,7 +395,10 @@ main {
 }
 
 .product{
-  background-color:rgb(231, 225, 213);
+
+  background-color:teal;
+  color:#ecd5a7;
+
   font-weight: bold;
 font-size: 1.6rem;
 padding: 1%;

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>pacit Delete department</title>
+  <title>pacit Departments</title>
   <link rel="icon" href="../images/onlinestoreicon.png">
 
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO'
@@ -16,12 +16,10 @@
 </head>
 
 <body>
-
   <div class="container">
-
-    <header class="header mt-3">    
-    <!-- Navigation var on top -->
-
+    <header class="header mt-3">
+      
+      <!-- Navigation var on top -->
     <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
       <!-- Brand -->
       <a class="navbar-brand">
@@ -38,14 +36,14 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-auto  btn">
+          <li class="nav-item ml-auto px-5">
             <a class="nav-link" href="/">Buy</a>
           </li>
-          <li class="nav-item ml-auto">
+          <li class="nav-item ml-auto px-5">
             <a class="nav-link" href="/prods">Sell</a>
           </li>
-          <li class="nav-item ml-auto">
-            <a class="nav-link active btn-dark rounded px-5" href="/depmts">Admin</a>
+          <li class="nav-item ml-auto ">
+            <a class="nav-link active btn-primary rounded px-5" href="/depmts">Admin</a>
           </li>
         </ul>
       </div>
@@ -55,17 +53,25 @@
   <!-- header end -->
 
   <div class="container">
-    <h2>Do you want to delete this Department?</h2>
-    <div>
-      <ul id="deptList">
-        <!-- Departments will be listed here -->
-      </ul>
-      <button type="submit" class="btn btn-dark" onclick="deleteDept()">Delete</button>
-      <button type="submit" class="btn btn-danger" onclick="cancelAction()">Cancel</button>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Login Form</h2>
+        <form class="login">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="email-input" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password-input" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-default">Login</button>
+        </form>
+        <br />
+        <p>Or sign up <a href="signup.html">here</a></p>
+      </div>
     </div>
-
   </div>
-
 </div>
   <!-- end container -->
 
@@ -76,65 +82,50 @@
     crossorigin="anonymous"></script>
 
   <script>
-    const cancelAction = () => {
-      // oveeride form-submit defualt behavior
-      event.preventDefault()
-      // redirect
-      window.location = './depmts'
-    }
+    document.addEventListener('click', e => {
+      if (e.target && e.target.id === 'updBnt') {
+        //  redirect to the link (how to pass a parameter on new location? )
+        window.location = `./depmts-edit?id=${e.target.value}`
+      }  
+ 
+      if (e.target && e.target.id === 'dltBnt') {
+        //  redirect to the link
+        window.location = `./depmts-delete?id=${e.target.value}`
+      }
+    })
 
-    const deleteDept = () => {
-      // oveeride form-submit defualt behavior
-      event.preventDefault()
-      // TODO: how to delete all producst from a department
-      //       Cannot truncate a table referenced in a foreign key constraint?
-
-      // delete department
-      fetch(`/depts/${selectedId}`, {
-          method: 'DELETE'
-        })
-        .then(r => {
-          // redirect
-          window.location = './depmts'
-        })
-        .catch(e => console.error(e))
-    }
-
-    const getSelectedItem = (itemId) => {
-      // get selected item 
-      fetch(`/depts/${itemId}`)
+    // get list of all departments
+    const getDepartments = () => {
+      fetch('/depts')
         .then(r => r.json())
         .then(r => {
-          let listItem = document.createElement('li')
-          listItem.innerHTML =
-            ` <div class="row">
+          document.querySelector('#deptList').innerHTML = ''
+          r.forEach(dept => {
+            let listItem = document.createElement('li')
+            listItem.innerHTML =
+              ` <div class="row">
                    <div class="col-sm-9">                             
                       <div class="card">
                        <div class="card-body">
-                         <h5 class="card-title">Department: ${r.name}</h5>
-                         <p class="card-text">Commission: ${r.overheadCosts}</p> 
+                         <h5 class="card-title">Seller: ${dept.name}</h5>
+                         <p class="card-text">Commission: ${dept.commission}</p> 
+                         <p class="card-text">Email: ${dept.email}</p> 
                       </div>
                      </div>
                    </div>
+                   <div class="col-sm-3">
+                      <button id="updBnt" class="btn btn-primary" value=${dept.id}>Edit</button>
+                      <button id="dltBnt" class="btn btn-primary" value=${dept.id}>Remove</button>
+                   </div>
               </div>
               `
-          document.querySelector('#deptList').appendChild(listItem)
+            document.querySelector('#deptList').appendChild(listItem)
+          });
         })
         .catch(e => console.error(e))
     }
 
-
-    let selectedId = getUrlParameter()
-    getSelectedItem(selectedId)
-
-    // general functions ----------------------------------------------------
-    function getUrlParameter() {
-      var vars = {};
-      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-        vars[key] = value;
-      });
-      return parseInt(vars.id)
-    }
+    getDepartments()
   </script>
 
 </body>

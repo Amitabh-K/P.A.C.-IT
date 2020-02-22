@@ -25,7 +25,7 @@ module.exports = (app) => {
   app.get('/dept-prodcts/:id', (req, res) => {
     db.products.findAll({
         where: {
-          departmentId: req.params.id
+          DepartmentId: req.params.id
         }
       })
       .then(r => res.json(r))
