@@ -59,12 +59,23 @@
 
   
      
-      <div class="row mt-3 d-flex justify-content-between ">
+      <div class="row mt-3 d-flex justify-content-end ">
 
         <div class=" ml-3">
           <select class="form-control" id="deptList" onchange="selectChange()"> </select>        
         </div>
 
+        <div class="mx-2">
+
+          <button class="btn" onclick="login()">login</button>
+
+        </div>
+        
+        <div class="mx-2">
+
+          <button class="btn" onclick="logout()">Logout</button>
+
+        </div>
 
         <div class="mr-3">
 
@@ -286,6 +297,21 @@
 
     getDepartments()
     getProducts()
+
+    const login = () => {
+      // override form-sumbit defautl behavior
+      event.preventDefault()
+      // view order
+      window.location = `./login`
+    }
+    const logout = () => {
+      // override form-sumbit defautl behavior
+      event.preventDefault()
+      // view order
+      window.location = `./signup`
+    }
+
+
 
 
 
