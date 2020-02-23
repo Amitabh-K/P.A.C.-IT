@@ -159,7 +159,10 @@
                                     </div>
 
                          <p class="card-text">Description: ${cartItem.description}</p>
-                         <p class="card-text"> Price $: ${cartItem.unitPrice} <br> Qty: ${cartItem.qty}</p> 
+                         <p class="card-text"> Price $: ${(cartItem.unitPrice).toLocaleString('en-US', {style: 'currency', currency: 'USD', }) } <br> Qty: ${cartItem.qty}</p>
+
+                         
+
                        </div>
                     </div>
                  </div>
@@ -179,7 +182,7 @@
             document.querySelector('#prodsList').appendChild(listItem)
           });
           // display total
-          document.querySelector('#cartTotal').innerHTML = `$ ${cartTotal}`
+          document.querySelector('#cartTotal').innerHTML = ` ${(cartTotal).toLocaleString('en-US', {style: 'currency', currency: 'USD', }) }`
         })
         .catch(e => console.error(e))
     }
