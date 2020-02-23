@@ -155,7 +155,7 @@
        </div>
 
              <p class="card-text">Description: ${product.description}</p>
-             <p class="card-text"><strong>Seller</strong>: ${getDeptName(product.departmentId)} <br>  Price $${product.price} <br> Available Quantity: ${product.stockQty}</p> 
+             <p class="card-text"><strong>Seller</strong>: ${getDeptName(product.departmentId)} / Price ${(product.price).toLocaleString('en-US', {style: 'currency', currency: 'USD', }) } / Available Quantity: ${product.stockQty}</p> 
             </div>
           </div>
         </div>
