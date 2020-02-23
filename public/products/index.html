@@ -187,9 +187,9 @@
                          <div class="card__image">
            <img src="${product.inventoryNum}" alt="product">
        </div>
-                         
-                         <p class="card-text">Description: ${product.description}</p>
-                         <p class="card-text">Seller: ${getDeptName(product.departmentId)} /  Price $${product.price} Stock: ${product.stockQty}</p> 
+       
+                         <p class="card-text mt-2">Description: ${product.description}</p>
+                         <p class="card-text">Seller: ${getDeptName(product.departmentId)} / Price  ${(product.price).toLocaleString('en-US', {style: 'currency', currency: 'USD', }) } / Available Qty: ${product.stockQty}</p> 
                       </div>
                      </div>
                    </div>
