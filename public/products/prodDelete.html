@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>pacit Delete department</title>
+  <title>Product Admin</title>
   <link rel="icon" href="../images/onlinestoreicon.png">
 
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO'
@@ -17,9 +17,9 @@
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <header class="header mt-3">    
+  <header class="header mt-3">    
     <!-- Navigation var on top -->
     <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
       <!-- Brand -->
@@ -35,37 +35,40 @@
       </button>
       <!-- Menu-Link options -->
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        
+        <!-- Menu left aligned (ml-auto) ref: https://stackoverflow.com/questions/41513463/bootstrap-4-align-navbar-items-to-the-right -->
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-auto  btn">
-            <a class="nav-link" href="/">Buy</a>
+          <li class="nav-item ml-auto">
+            <a class="nav-link  px-5" href="/">Buy</a>
           </li>
           <li class="nav-item ml-auto">
-            <a class="nav-link" href="/prods">Sell</a>
+            <a class="nav-link  active btn-dark rounded px-5" href="/prods">Sell</a>
           </li>
           <li class="nav-item ml-auto">
-            <a class="nav-link active btn-dark rounded px-5" href="/depmts">Admin</a>
+            <a class="nav-link  px-5" href="/depmts">Admin</a>
           </li>
         </ul>
       </div>
     </nav>
 
   </header>
-  <!-- header end -->
+  <br>
+
+  
 
   <div class="container">
-    <h2>Do you want to delete this Department?</h2>
+
+    <h2>Do you want to delete this Product?</h2>
     <div>
-      <ul id="deptList">
-        <!-- Departments will be listed here -->
+      <ul id="prodsList">
+        <!-- Products will be luisted here -->
       </ul>
-      <button type="submit" class="btn btn-dark" onclick="deleteDept()">Delete</button>
+      <button type="submit" class="btn btn-primary" onclick="deleteProd()">Delete</button>
       <button type="submit" class="btn btn-danger" onclick="cancelAction()">Cancel</button>
     </div>
 
   </div>
 
-</div>
+
   <!-- end container -->
 
 
@@ -75,33 +78,51 @@
     crossorigin="anonymous"></script>
 
   <script>
+    // keep a collection of incoming departments
+    let deptArr = []
+
+    // cancel teh action 
     const cancelAction = () => {
       // oveeride form-submit defualt behavior
       event.preventDefault()
       // redirect
-      window.location = './depmts'
+      window.location = './prods'
     }
 
-    const deleteDept = () => {
-      // oveeride form-submit defualt behavior
+    const deleteProd = () => {
+      // override form-submit default behavior
       event.preventDefault()
-      // TODO: how to delete all producst from a department
-      //       Cannot truncate a table referenced in a foreign key constraint?
-
-      // delete department
-      fetch(`/depts/${selectedId}`, {
+      // delete product
+      fetch(`/prodcts/${selectedId}`, {
           method: 'DELETE'
         })
         .then(r => {
           // redirect
-          window.location = './depmts'
+          window.location = './prods'
         })
         .catch(e => console.error(e))
     }
 
+    const getDepartments = () => {
+      fetch('/depts')
+        .then(r => r.json())
+        .then(r => {
+          deptArr = []
+          r.forEach(dept => {
+            // add department to array
+            deptArr.push({
+              id: dept.id,
+              name: dept.name
+            })
+          });
+        })
+        .catch(e => console.error(e))
+    }
+
+    // get from DB the selected item and display
     const getSelectedItem = (itemId) => {
       // get selected item 
-      fetch(`/depts/${itemId}`)
+      fetch(`/prodcts/${itemId}`)
         .then(r => r.json())
         .then(r => {
           let listItem = document.createElement('li')
@@ -110,23 +131,53 @@
                    <div class="col-sm-9">                             
                       <div class="card">
                        <div class="card-body">
-                         <h5 class="card-title">Department: ${r.name}</h5>
-                         <p class="card-text">Commission: ${r.overheadCosts}</p> 
+                         <h5 class="card-title">Name: ${r.name}</h5>
+                         
+
+                         <div class="card__image mb-3">
+           <img src="${r.inventoryNum}" alt="product">
+       </div>
+                         <p class="card-text">Description: ${r.description}</p>
+                         <p class="card-text">Depmt: ${getDeptName(r.departmentId)} /  Price($): ${r.price} / Stock: ${r.stockQty}</p> 
                       </div>
                      </div>
                    </div>
               </div>
               `
-          document.querySelector('#deptList').appendChild(listItem)
+          document.querySelector('#prodsList').appendChild(listItem)
         })
         .catch(e => console.error(e))
     }
 
-
+    // get id passed in URL
     let selectedId = getUrlParameter()
+    // get all departments and polulate selector
+    getDepartments()
+    // bring the selected item for display
     getSelectedItem(selectedId)
 
-    // general functions ----------------------------------------------------
+    // general function --------------------------------------------------------
+    function getDeptId(deptName) {
+      let deptId = undefined
+      deptArr.forEach(dept => {
+        if (deptName === dept.name) {
+          deptId = dept.id
+        }
+      });
+      return deptId
+    }
+
+    function getDeptName(deptId) {
+      deptId = parseInt(deptId)
+      let deptName = undefined
+      deptArr.forEach(dept => {
+        if (deptId === parseInt(dept.id)) {
+          deptName = dept.name
+        }
+      });
+      return deptName
+    }
+
     function getUrlParameter() {
       var vars = {};
       var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
