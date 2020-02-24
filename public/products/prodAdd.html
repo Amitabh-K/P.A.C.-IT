@@ -19,7 +19,8 @@
 
   <div class="container">
 
-    <header class="header mt-3">    <!-- Navigation bar on top -->
+    <header class="header mt-3">    
+    <!-- Navigation var on top -->
     <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
       <!-- Brand -->
       <a class="navbar-brand">
@@ -36,7 +37,7 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-auto active btn-primary rounded px-5">
+          <li class="nav-item ml-auto active btn-dark rounded px-5">
             <a class="nav-link" href="/">Buy</a>
           </li>
           <li class="nav-item ml-auto">
@@ -83,7 +84,7 @@
         <input type="number" class="form-control" name="prodStockQty" id="prodStockQty" placeholder="Count of item to sell">
       </div>
 
-      <button type="submit" class="btn btn-primary" onclick="createProd()">Create</button>
+      <button type="submit" class="btn btn-dark" onclick="createProd()">Create</button>
       <button type="submit" class="btn btn-danger" onclick="cancelAction()">Cancel</button>
     </form>
 
@@ -131,7 +132,7 @@
         errFound = true
       }
       if (!document.querySelector('#prodStocknum').value) {
-        document.querySelector('#prodStockNumErr').innerHTML = ' - please provide a inventory number'
+        document.querySelector('#prodStockNumErr').innerHTML = ' - please provide a image link'
         errFound = true
       }
       if (!document.querySelector('#prodDescr').value) {
@@ -168,7 +169,7 @@
               description: prodDescr,
               price: prodPrice,
               stockQty: prodStockQty,
-              DepartmentId: deptId
+              departmentId: deptId
             })
           })
           .then(r => {

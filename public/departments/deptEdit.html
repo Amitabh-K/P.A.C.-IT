@@ -19,13 +19,13 @@
 
   
   <div class="container">
-    <header class="header mt-3">      
-      <!-- Navigation bar on top -->
+    <header class="header mt-3">    
+    <!-- Navigation var on top -->
     <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
       <!-- Brand -->
       <a class="navbar-brand">
         <a class="nav-link d-inline" href="/">
-          <img src="./images/onlinestore.png" alt="Logo" class="brandLogo imgRnd10 imageShadow">
+       <img src="./images/onlinestore.png" alt="Logo" class="brandLogo imgRnd10 imageShadow">
         </a>
       </a>
 
@@ -44,7 +44,7 @@
             <a class="nav-link " href="/prods">Sell</a>
           </li>
           <li class="nav-item ml-auto mx-5">
-            <a class="nav-link active btn-primary rounded px-5" href="/depmts">Admin</a>
+            <a class="nav-link active btn-dark rounded px-5" href="/depmts">Admin</a>
           </li>
         </ul>
       </div>
@@ -61,19 +61,15 @@
         <input type="text" class="form-control" name="deptName" id="deptName" placeholder="Department name..">
       </div>
       <div class="form-group">
-        <label for="commission">Commission <span id="deptOverheadCostErr"></span></label>
-        <input type="number" class="form-control" name="commission" id="commission" placeholder="Department overhead costs..">
+        <label for="deptOverheadCosts">Commission <span id="deptOverheadCostErr"></span></label>
+        <input type="number" class="form-control" name="deptOverheadCosts" id="deptOverheadCosts">
       </div>
       <div class="form-group">
-        <label for="email">Email <span id="emailErr"></span></label>
-        <input type="email" class="form-control" name="email" id="email" placeholder="johnsmith@example.com">
-      </div>
-      <div class="form-group">
-        <label for="password">Password <span id="passwordErr"></span></label>
-        <input type="password" class="form-control" name="password" id="password" placeholder="">
+        <label for="deptEmail">Email <span id="deptEmailErr"></span></label>
+        <input type="email" class="form-control" name="deptEmail" id="deptEmail">
       </div>
       
-      <button type="submit" class="btn btn-primary" onclick="updateDept()">Update</button>
+      <button type="submit" class="btn btn-dark" onclick="updateDept()">Update</button>
       <button type="submit" class="btn btn-danger" onclick="cancelAction()"> Cancel</button>
     </form>
 
@@ -105,11 +101,11 @@
       document.querySelector('#deptNameErr').innerHTML = ''
       // Get information from screen
       let deptName = document.querySelector('#deptName').value
-      let commission = document.querySelector('#commission').value
-      let email = document.querySelector('#email').value
+      let deptOverheadCosts = document.querySelector('#deptOverheadCosts').value
+      let deptEmail = document.querySelector('#deptEmail').value
       // if overhead cost not provided use a random value
-      if (commission === undefined || commission === '') {
-        commission = 100 + Math.floor(Math.random() * 2000)
+      if (deptOverheadCosts === undefined || deptOverheadCosts === '') {
+        deptOverheadCosts = 100 + Math.floor(Math.random() * 2000)
       }
 
       if (document.querySelector('#deptName').value) {
@@ -121,8 +117,8 @@
             },
             body: JSON.stringify({
               name: deptName,
-              commission: commission,
-              email:email
+              overheadCosts: deptOverheadCosts,
+              email:deptEmail
             })
           })
           .then(r => {
@@ -142,8 +138,8 @@
         .then(r => r.json())
         .then(r => {
           document.querySelector('#deptName').value = r.name
-          document.querySelector('#commission').value = r.overheadCosts
-          document.querySelector('#email').value = r.email
+          document.querySelector('#deptOverheadCosts').value = r.overheadCosts
+          document.querySelector('#deptEmail').value = r.email
         })
         .catch(e => console.error(e))
     }

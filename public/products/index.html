@@ -19,8 +19,8 @@
 
 <div class="container">
 
-  <header class="header mt-3">
-        <!-- Navigation var on top -->
+  <header class="header mt-3">    
+    <!-- Navigation var on top -->
     <nav class="navbar navbar-expand-sm navbar-dark gradBlue">
       <!-- Brand -->
       <a class="navbar-brand">
@@ -38,24 +38,21 @@
         <!-- Menu left aligned (ml-auto) ref: https://stackoverflow.com/questions/41513463/bootstrap-4-align-navbar-items-to-the-right -->
         <ul class="navbar-nav ml-auto">
           <li class="nav-item ml-auto">
-            <a class="nav-link  btn mx-3" href="/">Buy</a>
+            <a class="nav-link  px-5" href="/">Buy</a>
           </li>
           <li class="nav-item ml-auto">
-            <a class="nav-link  active btn  mx-3" href="/prods">Sell</a>
+            <a class="nav-link  active btn-dark rounded px-5" href="/prods">Sell</a>
           </li>
           <li class="nav-item ml-auto">
-            <a class="nav-link btn mx-3" href="/depmts">Admin</a>
+            <a class="nav-link  px-5" href="/depmts">Admin</a>
           </li>
         </ul>
-
-
-
       </div>
     </nav>
+
   </header>
   <br>
   <!-- header end
-
   <div class="searchBar">
     <form>
       <div class="row">
@@ -74,7 +71,6 @@
       </div>
     </form>
   </div>
-
 -->
 
   <div class="searchBar">
@@ -101,7 +97,7 @@
     <br>
 <div class="ml-5">
   
-  <a class="btn btn-primary" href="/prods-add">Add-Product</a>
+  <a class="btn btn-dark" href="/prods-add">Add-Product</a>
 
 </div>
 <br><br>
@@ -183,21 +179,19 @@
                       <div class="card">
                        <div class="card-body">
                          <h5 class="card-title">Name: ${product.name}</h5>
-
                 
-
                          <div class="card__image">
            <img src="${product.inventoryNum}" alt="product">
        </div>
-                         
-                         <p class="card-text">Description: ${product.description}</p>
-                         <p class="card-text">Seller: ${getDeptName(product.departmentId)} /  Price $${product.price} Stock: ${product.stockQty}</p> 
+       
+                         <p class="card-text mt-2">Description: ${product.description}</p>
+                         <p class="card-text">Seller: ${getDeptName(product.departmentId)} / Price  ${(product.price).toLocaleString('en-US', {style: 'currency', currency: 'USD', }) } / Available Qty: ${product.stockQty}</p> 
                       </div>
                      </div>
                    </div>
                    <div class="col-sm-3">
-                      <button id="updBnt" class="btn btn-primary" value=${product.id}>Edit</button>
-                      <button id="dltBnt" class="btn btn-primary" value=${product.id}>Remove</button>
+                      <button id="updBnt" class="btn btn-dark" value=${product.id}>Edit</button>
+                      <button id="dltBnt" class="btn btn-dark" value=${product.id}>Remove</button>
                    </div>
               </div>
               `
@@ -228,7 +222,7 @@
               </div>
            </div>
          <div class="col-sm-3">
-            <button id="cartBnt" class="btn btn-primary" value=${product.id}>Add to Cart</button>
+            <button id="cartBnt" class="btn btn-dark" value=${product.id}>Add to Cart</button>
          </div>
        </div>
        `

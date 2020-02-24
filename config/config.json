@@ -1,10 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "codingbootcamp1",
-    "database": "pacit_db",
-    "host": "127.0.0.1",
-    "port": 3306,
+    "username": "lq84cjxlnho31wzk",
+    "password": "t44upixg2c4s8e4o",
+    "database": "r2vokjiookpyoi1b",
+    "host": "a07yd3a6okcidwap.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
@@ -17,10 +16,7 @@
   },
   "production": {
     "username": "root",
-    "password": "",
-    "database": "",
-    "host": "127.0.0.1",
-    "port": 3306,
+    "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
 }
