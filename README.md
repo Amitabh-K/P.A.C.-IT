@@ -60,7 +60,7 @@ Try the project  [project link](https://pac-it-buy-sell.herokuapp.com/prods/)!
 ## Database Design:
 
 
-![demo](/public/images/sql2png)
+![demo](/public/images/sql2.png)
 
 
 ## Built and Maintained by:
