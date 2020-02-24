@@ -149,18 +149,14 @@
           <div class="card">
             <div class="card-body">
              <h5 class="card-title">Name: ${product.name}</h5>                     
-
              <div class="card__image mb-3">
            <img src="${product.inventoryNum}" alt="product">
        </div>
-
              <p class="card-text">Description: ${product.description}</p>
              <p class="card-text"><strong>Seller</strong>: ${getDeptName(product.departmentId)} / Price ${(product.price).toLocaleString('en-US', {style: 'currency', currency: 'USD', }) } / Available Quantity: ${product.stockQty}</p> 
             </div>
           </div>
         </div>
-
-
         <div class="col-sm-2">
           <form>
             <div class="form-group">
