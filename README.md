@@ -1,8 +1,14 @@
 # PACT IT Buy & Sell
+ * **MVC architectural pattern** 
+    * Sequelize  ORM (MySQL) as database (MODEL)
+    * HTML and Bootstrap  at Front end secured by PassportJS (VIEW)
+    * NodeJS and Express at backend (CONTROLLER)
+* App to allow users to sell out to, or buy from other users 
+* Thus, in this app the seller posts items to sell on the PAC IT website
+* Buyer  selects an item to buy and for 
+* Once an item has been sold, the item will not be available for  other users
+* Incorporated Login Authentication which allows users to login before the selling products
 
-App to allow users to sell out to, or buy from other users thus,  in this project seller posts items to sell on the PAC IT website. User selects an item user wants to buy and for how much user wants to buy the item. Once an item has been sold, the item will not be available for sold to other users.
-
- * Incorporated Login Authentication which allows users to login before the user wants to sell projects on the website.
 
 
 ![demo](/public/images/pac.gif)
@@ -45,7 +51,7 @@ Try the project  [project link](https://pac-it-buy-sell.herokuapp.com/prods/)!
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - Stylesheet language used to describe presentation of pages.
 * [Heroku](https://www.heroku.com/)- Cloud platform which builds databases and websites deployed online. 
 * [Javascript](https://www.javascript.com/) - The scripting language used to manipulate the DOM. 
-* [BootstrapCDN](https://getbootstrap.com/docs/4.1/getting-started/introduction/) - The web framework used for styling. 
+* [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/) - The web framework used for styling. 
 * [jQuery](http://jquery.com/) - Javascript library for DOM and CSS manipulation.
 * [Sequelize](http://docs.sequelizejs.com/) - Promise based ORM for Node that supports MySQL interactivity.
 * [Node](https://nodejs.org/en) - Javascript run-time environment that exectues server side code.
@@ -70,6 +76,18 @@ Try the project  [project link](https://pac-it-buy-sell.herokuapp.com/prods/)!
 * **Cherechi**  - [Cherechi](https://github.com/cherechic)
 * **Amitabh Kumar**  - [Amitabh Kumar](https://github.com/Amitabh-K)
 
+
+## Buy Sell & Authentication:
+
+![demo](/public/images/buy.png)
+
+
+## Cart Admin & Exit:
+
+
+![demo](/public/images/sell.png)
+
+
 ## Wireframe:
 
 ![demo](/public/images/wireframe.png)
@@ -78,7 +96,6 @@ Try the project  [project link](https://pac-it-buy-sell.herokuapp.com/prods/)!
 
 
 ![demo](/public/images/sucess.jpg)
-
 
 
 ## Acknowledgments
