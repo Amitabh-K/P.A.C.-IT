@@ -1,3 +1,5 @@
+[![HitCount](http://hits.dwyl.com/Amitabh-K/PAC-IT-Buy-N-Sell.svg)](http://hits.dwyl.com/Amitabh-K/PAC-IT-Buy-N-Sell)
+
 # PACT IT Buy & Sell
  * **MVC architectural pattern** 
     * Sequelize  ORM (MySQL) as database (MODEL)
